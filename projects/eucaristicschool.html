@@ -1,124 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<title>Exploratory Data Analysis</title>
-	<!-- css files -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
-
-	<link rel="icon" type="image/x-icon" href="https://i.ibb.co/0nHTTFb/image103.png">
-	<meta name="author" content="Alejandro Pinto">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  </script>
-
+  <title>Jesús Eucaristía School — Physics Analysis | Alejandro Pinto</title>
+  <meta name="author" content="Alejandro Pinto">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' stroke='%2300c8ff' stroke-width='2' fill='none' opacity='0.6'/><text x='23' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%23e8f4ff'>A</text><text x='51' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%2300c8ff'>P</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <style>
+    :root{--bg:#080c14;--bg-2:#0d1424;--bg-card:#0f1929;--border:rgba(0,200,255,0.12);--border-hi:rgba(0,200,255,0.35);--accent:#00c8ff;--accent-2:#7b61ff;--accent-3:#00ffa3;--text:#c8d8e8;--text-dim:#5a7080;--text-hi:#e8f4ff;--font-mono:'JetBrains Mono','Courier New',monospace;--font-sans:'Syne',system-ui,sans-serif;--radius:8px;--transition:0.3s cubic-bezier(0.4,0,0.2,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+    body{background-color:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:15px;line-height:1.7;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+    .bg-grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,200,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+    .scanline{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.4;z-index:9999;animation:scan 6s linear infinite;pointer-events:none;}
+    @keyframes scan{0%{top:0%}100%{top:100%}}
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-brand a{display:flex;align-items:center;gap:0.6rem;}.nav-logo-svg{flex-shrink:0;transition:transform 0.4s ease;}.nav-brand:hover .nav-logo-svg{transform:rotate(15deg) scale(1.08);}
+    .nav-brand-text{font-family:var(--font-sans);font-size:0.9rem;font-weight:700;color:var(--text-hi);}
+    .nav-links{display:flex;align-items:center;gap:2.5rem;}.nav-link{font-size:0.82rem;color:var(--text-dim);letter-spacing:0.06em;transition:color var(--transition);display:flex;align-items:center;gap:0.4rem;}.nav-link:hover{color:var(--accent);}.link-num{color:var(--accent);font-size:0.75rem;}.nav-cv{border:1px solid var(--border-hi);padding:0.35rem 0.9rem;border-radius:var(--radius);color:var(--accent)!important;}.nav-cv:hover{background:rgba(0,200,255,0.1);}
+    .nav-socials{display:flex;gap:1.2rem;}.social-icon{color:var(--text-dim);font-size:1rem;transition:color var(--transition);}.social-icon:hover{color:var(--accent);}
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}.hamburger span{display:block;width:22px;height:2px;background:var(--text);}
+    .page-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:100px 2rem 5rem;}
+    .page-header{margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+    .page-tag{font-size:0.75rem;color:var(--accent);opacity:0.7;letter-spacing:0.06em;margin-bottom:0.8rem;}
+    .page-title{font-family:var(--font-sans);font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:800;color:var(--text-hi);line-height:1.25;margin-bottom:1rem;}
+    .page-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.8;}
+    .content-body h2{font-family:var(--font-sans);font-size:1.1rem;font-weight:700;color:var(--accent);margin:2.5rem 0 0.8rem;display:flex;align-items:center;gap:0.6rem;}
+    .content-body h2::before{content:'';display:inline-block;width:3px;height:1em;background:var(--accent);border-radius:2px;}
+    .content-body p{font-size:0.85rem;color:var(--text);line-height:1.9;margin-bottom:1rem;}
+    .content-body ul{padding-left:1.5rem;margin-bottom:1rem;}.content-body li{font-size:0.85rem;color:var(--text);line-height:1.8;margin-bottom:0.3rem;}
+    .content-body a{color:var(--accent);transition:color var(--transition);}.content-body a:hover{color:var(--accent-3);}
+    .section-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;transition:border-color var(--transition),box-shadow var(--transition);}.section-card:hover{border-color:var(--border-hi);box-shadow:0 8px 32px rgba(0,200,255,0.06);}
+    .section-num{font-size:0.7rem;color:var(--accent);opacity:0.5;margin-bottom:0.3rem;letter-spacing:0.08em;}
+    .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin:1.2rem 0;}
+    .stat-box{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;}
+    .stat-val{font-family:var(--font-sans);font-size:1.6rem;font-weight:800;color:var(--accent);display:block;line-height:1;}
+    .stat-lbl{font-size:0.68rem;color:var(--text-dim);letter-spacing:0.05em;margin-top:0.3rem;}
+    .btn-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;padding:0.6rem 1.2rem;border-radius:var(--radius);border:1px solid var(--accent);color:var(--accent);background:rgba(0,200,255,0.08);transition:all var(--transition);margin-top:0.5rem;}.btn-link:hover{background:rgba(0,200,255,0.18);box-shadow:0 0 16px rgba(0,200,255,0.2);}
+    .site-footer{position:relative;z-index:1;border-top:1px solid var(--border);background:var(--bg);padding:2rem 5rem;}.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}.footer-brand{font-size:1rem;font-weight:700;color:var(--accent);margin-right:1rem;}.footer-copy{font-size:0.75rem;color:var(--text-dim);}.footer-right{display:flex;gap:1.2rem;}
+    ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+    @media(max-width:768px){.navbar{padding:0 1.5rem;}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--border);padding:1.5rem;gap:1.2rem;}.nav-links.open{display:flex;}.hamburger{display:flex;}.nav-socials{display:none;}.page-wrap{padding:90px 1.2rem 3rem;}.site-footer{padding:2rem 1.5rem;}}
+  </style>
 </head>
-	<body>
-		<!-- Navbar -->
-		<nav class="nav container void-background">
-			<!-- This "nav-menu" is hidden on mobile -->
-			<!-- Add the modifier "is-active" to display it on mobile -->
-			<div class="nav-left">
-				<a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/	" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-linkedin"></i>
-					</span>
-				</a>
-				<a href="https://github.com/AlejandroPinto5" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-github"></i>
-					</span>
-				</a>
-				<a href="https://twitter.com/Alejo_Pintirris" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-twitter"></i>
-					</span>
-				</a>
-			</div>
+<body>
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
 
-			<div class="nav-right nav-menu">
-				<a class="nav-item" href="../index.html"><b>About</b></a>
-				<a class="nav-item" href="../index.html"><b>Projects</b></a>
-					<!-- <a class="nav-item" href="cv_AP.pdf" target="_blank" download> -->
-						<!-- <button class="download-button"><b>cv</b></button></a> -->
-			</div>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="../index.html">
+        <svg width="38" height="38" viewBox="0 0 100 100" fill="none" class="nav-logo-svg">
+          <circle cx="50" cy="50" r="46" stroke="#00c8ff" stroke-width="1.8" fill="none" opacity="0.6"/>
+          <ellipse cx="50" cy="50" rx="14" ry="36" stroke="#00c8ff" stroke-width="1" fill="none" opacity="0.35" transform="rotate(-15 50 50)"/>
+          <text x="24" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#e8f4ff">A</text>
+          <text x="52" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#00c8ff">P</text>
+          <circle r="3.5" fill="#00ffa3" opacity="0.95"><animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto"><mpath href="#op4"/></animateMotion></circle>
+          <defs><path id="op4" d="M 50 14 C 58 14,64 30,64 50 C 64 70,58 86,50 86 C 42 86,36 70,36 50 C 36 30,42 14,50 14" transform="rotate(-15 50 50)"/></defs>
+        </svg>
+        <span class="nav-brand-text">Alejandro Pinto</span>
+      </a>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="../index.html#about" class="nav-link"><span class="link-num">01.</span> about</a>
+      <a href="../index.html#research" class="nav-link"><span class="link-num">02.</span> research</a>
+      <a href="../index.html#projects" class="nav-link"><span class="link-num">03.</span> projects</a>
+      <a href="../cvAP-da.pdf" target="_blank" download class="nav-link nav-cv"><span class="link-num">//</span> resume.pdf</a>
+    </div>
+    <div class="nav-socials">
+      <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank"><i class="fa fa-github"></i></a>
+      <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank"><i class="fa fa-twitter"></i></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
 
-			<span class="nav-toggle">
-				<span></span>
-				<span></span>
-				<span></span>
-			</span>
-		</nav>
+  <div class="page-wrap">
+    <div class="page-header">
+      <div class="page-tag">// physics_analysis.py — python · eda · education</div>
+      <h1 class="page-title">Insights into Student Performance in High School Physics — Jesús Eucaristía School</h1>
+      <p class="page-desc">Analysis of physics test results from 2021 for 42 students across 2 courses, examining 4 physics components and 3 competences in preparation for the Colombian Scholastic Aptitude Test (ICFES).</p>
+    </div>
 
+    <div class="content-body">
 
-        <!-- Here start you page -->
-        <main-rp>
-          <div class="index">
-            <!-- Source: https://flic.kr/p/pAZBNK -->
-            <img class="avatar-index container nav-item" href="../index.html" src="https://i.ibb.co/m0cLrhd/both-data.png">
-            <!-- Navegation list -->
-            <nav class="nav-list nav-menu">
-              <ul>
-                  <li><a href="https://github.com/AlejandroPinto5/JesusEucaristiaSchool">GitHub Repository</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="rp box">
-            <h1 id="jes">	Insights into Student Performance in High School Physics: Examining the Results of Physics Tests in Preparation for the Colombian Scholastic Aptitude Test at Jesús Eucaristia School.</h1>
-              <p>The following report presents an analysis of the performance of high school students from Jesús Eucaristia School in the area of physics, based on data collected during the year 2021. The objective of this analysis is to evaluate the effectiveness of the school's physics program in preparing students for the Colombian Scholastic Aptitude Test (ICFES), which is a standardized test used to assess the academic performance of students in Colombia. The data includes information on 5 tests taken by 2 courses of 21 students each, for a total of 42 students. The tests cover 4 components of physics (thermodynamics, waves, mechanics, and electromagnetism) and 3 competences (explanation of phenomena, inquiry, and comprehensive use of knowledge). By analyzing this data, we can identify areas of strength and weakness in the school's physics program, and make recommendations for improvement to better prepare students for the ICFES.</p>
-              <ol>
-                <h2> <li>OVERVIEW OF THE DATA</li></h2>
-                There were 5 tests in total, which were taken by 2 courses of 21 students each, for a total of 42 students.
-                The data contains the following information for each student and each test:
-                <ul>
-                  <li>Name of the student.</li>
-                  <li>Number of wrong and good answers.</li>
-                  <li>Number of questions per test.</li>
-                  <li>4 components of physics: thermodynamics, waves, mechanics, and electromagnetism.</li>
-                  <li>3 competences: explanation of phenomena, inquiry, and comprehensive use of knowledge.</li>
-                  <li>Difficulty of the question.</li>
-                </ul>
-                <h2><li>OVERALL PERFORMANCE:</li> </h2>
-                <ul>
-                  <li>To evaluate the overall performance of the students, we can calculate the average score across all tests and all students.</li>
-                  <li>Calculate the average score for each course separately, and compare them to see if there's any significant difference in performance between the two courses.</li>
-                  <li>Additionally, we can analyze the distribution of scores to see if there are any outliers or if the scores are normally distributed.</li>
-                </ul>
-                <h2><li>PERFORMANCE BY PHYSICS COMPONENT:</li></h2>
-                <ul>
-                  <li>Analyze the performance of students on each physics component separately.</li>
-                  <li>Calculate the average score for each component across all tests and all students, and compare them to see which component the students performed the best or worst in.</li>
-                  <li>Analyze the distribution of scores for each component to see if there are any differences in performance across the different components.</li>
-                </ul>
-                <h2><li>PERFORMANCE BY competence:</li></h2>
-                <ul>
-                  <li>Analyze the performance of students on each competence separately.</li>
-                  <li>Calculate the average score for each competence across all tests and all students, and compare them to see which competence the students performed the best or worst in.</li>
-                  <li>Analyze the distribution of scores for each competence to see if there are any differences in performance across the different competences.</li>
-                </ul>
-                <h2><li>Difficulty of questions:</li></h2>
-                <ul>
-                  <li>Analyze the difficulty of questions to see if there's any correlation between difficulty and student performance.</li>
-                  <li>Calculate the average score for each difficulty level of questions, and compare them to see if students performed better on easier or harder questions.</li>
-                  <li>Analyze the distribution of scores for each difficulty level to see if there are any differences in performance across the different levels.</li>
-                </ul>
-                </ol>
+      <div class="section-card">
+        <div class="section-num">// dataset overview</div>
+        <h2>Overview of the Data</h2>
+        <div class="stats-row">
+          <div class="stat-box"><span class="stat-val">5</span><div class="stat-lbl">Total Tests</div></div>
+          <div class="stat-box"><span class="stat-val">2</span><div class="stat-lbl">Courses</div></div>
+          <div class="stat-box"><span class="stat-val">42</span><div class="stat-lbl">Students</div></div>
+          <div class="stat-box"><span class="stat-val">4</span><div class="stat-lbl">Physics Components</div></div>
+          <div class="stat-box"><span class="stat-val">3</span><div class="stat-lbl">Competences</div></div>
+        </div>
+        <p>Each student record contains: name, wrong/good answers count, questions per test, and scores across 4 physics components (thermodynamics, waves, mechanics, electromagnetism) and 3 competences (explanation of phenomena, inquiry, comprehensive use of knowledge), plus question difficulty.</p>
+        <a href="https://github.com/AlejandroPinto5/JesusEucaristiaSchool" target="_blank" class="btn-link">
+          <i class="fa fa-github"></i> View GitHub Repository
+        </a>
+      </div>
 
-                <p>Based on the analysis of the data, we can draw conclusions about the overall performance of the students, as well as their performance on specific components and competences. We can also identify any areas of weakness or strength, and make recommendations for improvement. It's important to note that this analysis is based on a limited amount of data, and further analysis may be needed to fully understand the performance of the students.</p>
-								<p>You can find the notebook here: <a href="https://github.com/AlejandroPinto5/JesusEucaristiaSchool">Data Analysis of </a>INSIGHTS INTO STUDENT PERFORMANCE IN HIGH SCHOOL PHYSICS </p>
-          </div>
+      <div class="section-card">
+        <div class="section-num">// 01</div>
+        <h2>Overall Performance</h2>
+        <ul>
+          <li>Calculate the average score across all tests and all students.</li>
+          <li>Compare average scores per course to detect performance differences.</li>
+          <li>Analyze score distribution for outliers and normality.</li>
+        </ul>
+      </div>
 
-        </main-rp>
+      <div class="section-card">
+        <div class="section-num">// 02</div>
+        <h2>Performance by Physics Component</h2>
+        <ul>
+          <li>Analyze performance on each component: thermodynamics, waves, mechanics, electromagnetism.</li>
+          <li>Calculate average score per component and compare across all tests.</li>
+          <li>Analyze score distribution to identify component-level gaps.</li>
+        </ul>
+      </div>
 
-    <!-- Footer -->
-		<section class="footer">
-			<img src="https://i.ibb.co/jR7YH3p/sign.png" alt="Image">
-		</section>
+      <div class="section-card">
+        <div class="section-num">// 03</div>
+        <h2>Performance by Competence</h2>
+        <ul>
+          <li>Analyze performance on each competence: explanation of phenomena, inquiry, and comprehensive use of knowledge.</li>
+          <li>Identify which competence students perform best and worst in.</li>
+          <li>Analyze distributions across competences.</li>
+        </ul>
+      </div>
 
-		<!-- Scripts  -->
-		<script src="../controller.js"></script>
-	</body>
+      <div class="section-card">
+        <div class="section-num">// 04</div>
+        <h2>Difficulty of Questions</h2>
+        <ul>
+          <li>Analyze the correlation between question difficulty and student performance.</li>
+          <li>Calculate average score by difficulty level and compare.</li>
+          <li>Analyze distribution of scores per difficulty level.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div><span class="footer-brand">[AP]</span><span class="footer-copy">© 2025 Alejandro Pinto</span></div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank"><i class="fa fa-github"></i></a>
+        <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank"><i class="fa fa-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('nav-links').classList.toggle('open'));</script>
+</body>
 </html>

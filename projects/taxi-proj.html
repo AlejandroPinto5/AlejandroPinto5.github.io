@@ -1,126 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<title>Exploratory Data Analysis</title>
-	<!-- css files -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
-
-	<link rel="icon" type="image/x-icon" href="https://i.ibb.co/0nHTTFb/image103.png">
-	<meta name="author" content="Alejandro Pinto">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  </script>
-
+  <title>NYC Taxi Trip Duration | Alejandro Pinto</title>
+  <meta name="author" content="Alejandro Pinto">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' stroke='%2300c8ff' stroke-width='2' fill='none' opacity='0.6'/><text x='23' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%23e8f4ff'>A</text><text x='51' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%2300c8ff'>P</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <style>
+    :root{--bg:#080c14;--bg-2:#0d1424;--bg-card:#0f1929;--border:rgba(0,200,255,0.12);--border-hi:rgba(0,200,255,0.35);--accent:#00c8ff;--accent-2:#7b61ff;--accent-3:#00ffa3;--text:#c8d8e8;--text-dim:#5a7080;--text-hi:#e8f4ff;--font-mono:'JetBrains Mono','Courier New',monospace;--font-sans:'Syne',system-ui,sans-serif;--radius:8px;--transition:0.3s cubic-bezier(0.4,0,0.2,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+    body{background-color:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:15px;line-height:1.7;overflow-x:hidden;}a{text-decoration:none;color:inherit;}
+    .bg-grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,200,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+    .scanline{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.4;z-index:9999;animation:scan 6s linear infinite;pointer-events:none;}
+    @keyframes scan{0%{top:0%}100%{top:100%}}
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-brand a{display:flex;align-items:center;gap:0.6rem;}.nav-logo-svg{flex-shrink:0;transition:transform 0.4s ease;}.nav-brand:hover .nav-logo-svg{transform:rotate(15deg) scale(1.08);}
+    .nav-brand-text{font-family:var(--font-sans);font-size:0.9rem;font-weight:700;color:var(--text-hi);}
+    .nav-links{display:flex;align-items:center;gap:2.5rem;}.nav-link{font-size:0.82rem;color:var(--text-dim);letter-spacing:0.06em;transition:color var(--transition);display:flex;align-items:center;gap:0.4rem;}.nav-link:hover{color:var(--accent);}.link-num{color:var(--accent);font-size:0.75rem;}.nav-cv{border:1px solid var(--border-hi);padding:0.35rem 0.9rem;border-radius:var(--radius);color:var(--accent)!important;}.nav-cv:hover{background:rgba(0,200,255,0.1);}
+    .nav-socials{display:flex;gap:1.2rem;}.social-icon{color:var(--text-dim);font-size:1rem;transition:color var(--transition);}.social-icon:hover{color:var(--accent);}
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}.hamburger span{display:block;width:22px;height:2px;background:var(--text);}
+    .page-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:100px 2rem 5rem;}
+    .page-header{margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+    .page-tag{font-size:0.75rem;color:var(--accent);opacity:0.7;letter-spacing:0.06em;margin-bottom:0.8rem;}
+    .page-title{font-family:var(--font-sans);font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--text-hi);line-height:1.2;margin-bottom:1rem;}
+    .page-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.8;}
+    .content-body h2{font-family:var(--font-sans);font-size:1.1rem;font-weight:700;color:var(--accent);margin:2.5rem 0 0.8rem;display:flex;align-items:center;gap:0.6rem;}
+    .content-body h2::before{content:'';display:inline-block;width:3px;height:1em;background:var(--accent);border-radius:2px;}
+    .content-body p{font-size:0.85rem;color:var(--text);line-height:1.9;margin-bottom:1rem;}
+    .content-body ul{padding-left:1.5rem;margin-bottom:1rem;}.content-body li{font-size:0.85rem;color:var(--text);line-height:1.8;margin-bottom:0.4rem;}
+    .content-body b{color:var(--text-hi);}
+    .content-body a{color:var(--accent);transition:color var(--transition);}.content-body a:hover{color:var(--accent-3);}
+    .section-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;transition:border-color var(--transition),box-shadow var(--transition);}.section-card:hover{border-color:var(--border-hi);box-shadow:0 8px 32px rgba(0,200,255,0.06);}
+    .section-num{font-size:0.7rem;color:var(--accent);opacity:0.5;margin-bottom:0.3rem;letter-spacing:0.08em;}
+    .dict-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.8rem;margin-top:1rem;}
+    .dict-item{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);padding:0.8rem 1rem;}
+    .dict-key{color:var(--accent-3);font-size:0.8rem;font-weight:600;margin-bottom:0.2rem;}
+    .dict-val{color:var(--text-dim);font-size:0.77rem;line-height:1.5;}
+    .dict-item.target{border-color:rgba(0,200,255,0.35);}.dict-item.target .dict-key{color:var(--accent);}
+    .btn-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;padding:0.6rem 1.2rem;border-radius:var(--radius);border:1px solid var(--accent);color:var(--accent);background:rgba(0,200,255,0.08);transition:all var(--transition);margin-top:0.5rem;}.btn-link:hover{background:rgba(0,200,255,0.18);box-shadow:0 0 16px rgba(0,200,255,0.2);}
+    .site-footer{position:relative;z-index:1;border-top:1px solid var(--border);background:var(--bg);padding:2rem 5rem;}.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}.footer-brand{font-size:1rem;font-weight:700;color:var(--accent);margin-right:1rem;}.footer-copy{font-size:0.75rem;color:var(--text-dim);}.footer-right{display:flex;gap:1.2rem;}
+    ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+    @media(max-width:768px){.navbar{padding:0 1.5rem;}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--border);padding:1.5rem;gap:1.2rem;}.nav-links.open{display:flex;}.hamburger{display:flex;}.nav-socials{display:none;}.page-wrap{padding:90px 1.2rem 3rem;}.site-footer{padding:2rem 1.5rem;}}
+  </style>
 </head>
-	<body>
-		<!-- Navbar -->
-		<nav class="nav container void-background">
-			<!-- This "nav-menu" is hidden on mobile -->
-			<!-- Add the modifier "is-active" to display it on mobile -->
-			<div class="nav-left">
-				<a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/	" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-linkedin"></i>
-					</span>
-				</a>
-				<a href="https://github.com/AlejandroPinto5" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-github"></i>
-					</span>
-				</a>
-				<a href="https://twitter.com/Alejo_Pintirris" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-twitter"></i>
-					</span>
-				</a>
-			</div>
+<body>
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
 
-			<div class="nav-right nav-menu">
-				<a class="nav-item" href="../index.html"><b>About</b></a>
-				<a class="nav-item" href="../index.html"><b>Projects</b></a>
-					<!-- <a class="nav-item" href="cv_AP.pdf" target="_blank" download> -->
-						<!-- <button class="download-button"><b>cv</b></button></a> -->
-			</div>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="../index.html">
+        <svg width="38" height="38" viewBox="0 0 100 100" fill="none" class="nav-logo-svg">
+          <circle cx="50" cy="50" r="46" stroke="#00c8ff" stroke-width="1.8" fill="none" opacity="0.6"/>
+          <ellipse cx="50" cy="50" rx="14" ry="36" stroke="#00c8ff" stroke-width="1" fill="none" opacity="0.35" transform="rotate(-15 50 50)"/>
+          <text x="24" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#e8f4ff">A</text>
+          <text x="52" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#00c8ff">P</text>
+          <circle r="3.5" fill="#00ffa3" opacity="0.95"><animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto"><mpath href="#op5"/></animateMotion></circle>
+          <defs><path id="op5" d="M 50 14 C 58 14,64 30,64 50 C 64 70,58 86,50 86 C 42 86,36 70,36 50 C 36 30,42 14,50 14" transform="rotate(-15 50 50)"/></defs>
+        </svg>
+        <span class="nav-brand-text">Alejandro Pinto</span>
+      </a>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="../index.html#about" class="nav-link"><span class="link-num">01.</span> about</a>
+      <a href="../index.html#research" class="nav-link"><span class="link-num">02.</span> research</a>
+      <a href="../index.html#projects" class="nav-link"><span class="link-num">03.</span> projects</a>
+      <a href="../cvAP-da.pdf" target="_blank" download class="nav-link nav-cv"><span class="link-num">//</span> resume.pdf</a>
+    </div>
+    <div class="nav-socials">
+      <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank"><i class="fa fa-github"></i></a>
+      <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank"><i class="fa fa-twitter"></i></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
 
-			<span class="nav-toggle">
-				<span></span>
-				<span></span>
-				<span></span>
-			</span>
-		</nav>
+  <div class="page-wrap">
+    <div class="page-header">
+      <div class="page-tag">// taxi_duration.py — python · eda · regression</div>
+      <h1 class="page-title">New York City Taxi Trip Duration</h1>
+      <p class="page-desc">Building a model to predict total taxi ride duration in NYC. Better duration predictions enable smarter dispatcher assignment — knowing when a driver will be free improves pickup efficiency.</p>
+    </div>
 
+    <div class="content-body">
 
-        <!-- Here start you page -->
-        <main-rp>
-          <div class="index">
-            <!-- Source: https://flic.kr/p/pAZBNK -->
-            <img class="avatar-index container nav-item" href="../index.html" src="https://i.ibb.co/m0cLrhd/both-data.png">
-            <!-- Navegation list -->
-            <nav class="nav-list nav-menu">
-              <ul>
-                  <li><a href="eda">Dictionary</a></li>
-								  <li><a href="colab">Notebook</a></li>
-									<li><a href="con">Conclusions</a></li>
-
-              </ul>
-            </nav>
-          </div>
-          <div class="rp box">
-            <h1>New York city Taxi Drive duration</h1>
-            <p>To improve the efficiency of taxi dispatching systems for such services, it is important to be able to predict how long a driver will have his taxi occupied. If a dispatcher knew approximately when a taxi driver would be ending their current ride, they would be better able to identify which driver to assign to each pickup request. This project is to build a model that predicts the total ride duration of taxi trips in New York City.</p>
-
-            <ol>
-              <h2 id="eda"><li>Dictionary</li></h2>
-                <p>Let's check the data files! According to the data description we should find the following columns:</p>
-                  <ul>
-                    <li><b>id:</b> a unique identifier for each trip.</li>
-                    <li><b>vendor_id:</b>a code indicating the provider associated with the trip record</li>
-                    <li><b>pickup_datetime:</b>date and time when the meter was engaged.</li>
-                    <li><b>dropoff_datetime:</b>date and time when meter was disengaged.</li>
-                    <li><b>passenger_count:</b>the number of passengers in the vehicle (driver entered value)</li>
-                    <li><b>pickup_longitude:</b>the longitud where the meter eas engaged</li>
-                    <li><b>pickup_latitude:</b> the latitude where the meter was engaged</li>
-                    <li><b>dropoff_longitude:</b> the longitude where the meter was disengaged</li>
-                    <li><b>dropoff_latitude:</b> the latitude where the meter was disengaged</li>
-                    <li><b>store_and_fwd_flag:</b> this flag indicates whether the trip record was held in vehicle memory before sending to the vendor because the vehicle did not have a connection to the server (Y=store and forward; N=not a store and forward trip)</li>
-                    <li><b>trip_duration:</b> (target) duration of the trip in seconds</li>
-                  </ul>
-                <p>Here, we have 2 variables dropoff_datetime and store_and_fwd_flag which are not available before the trip starts and hence will not be used as features to the model.</p>
-								<h2 id="colab"><li>Data Analysis</li> </h2>
-								<p>Here, you can find googlee Colab notebook: <a href="https://github.com/AlejandroPinto5/EDA-projects/blob/main/NYC-taxi-project/EDA_taxi_proj.ipynb">Data Analysis of NYC taxi trip duration. </a></p>
-              <h2 id="con"><li>Conclusions:</li> </h2>
-								<ul>
-									<li>The majority of rides follow a rather smooth distribution that looks almost log-normal with a peak just around exp(6.5) i.e. about 17 minutes.</li>
-									<li>There are several suspiciously short rides with less than 10 seconds duration.</li>
-									<li>As discussed earlier, there are a few huge outliers near 12.</li>
-									<li>Most of the trips involve only 1 passenger. There are trips with 7-9 passengers but they are very low in number.</li>
-									<li>Vendor 2 has more number of trips as compared to vendor 1</li>
-									<li>Number of pickups for weekends is much lower than week days with a peak on Thursday (4). Note that here weekday is a decimal number, where 0 is Sunday and 6 is Saturday.</li>
-									<li>Number of pickups as expected is highest in late evenings. However, it is much lower during the morning peak hours.</li>
-									<li>We see that most trips are concentrated between these lat long only with a few significant clusters. These clusters are represented by the numerous peaks in the lattitude and longitude histograms</li>
-									<li>Trip durations are definitely shorter for late night and early morning hours that can be attributed to low traffic density</li>
-									<li>It follows a similar pattern when compared to number of pickups indicating a correlation between number of pickups and trip duration</li>
-									<li>Median trip duration does not vary much as can be seen from the above plot for different vendors.</li>
-									<li>The boxplot clearly shows that there not much of a difference in distribution for the most frequently occuring passenger count values - 1, 2, 3.</li>
-									<li>Another key observation is that the number of outliers are reduced for higher passenger counts but that only comes down to the individual frequencies of each passenger count.</li>
-									<li>From the correlation heatmap we see that the lattitude and longitude features have higher correlation with the target as compared to the other features.</li>
-								</ul>
-            </ol>
-
+      <div class="section-card">
+        <div class="section-num">// 01 — data dictionary</div>
+        <h2>Feature Dictionary</h2>
+        <p>Note: <b>dropoff_datetime</b> and <b>store_and_fwd_flag</b> are not available before the trip starts and therefore excluded from model features.</p>
+        <div class="dict-grid">
+          <div class="dict-item"><div class="dict-key">id</div><div class="dict-val">Unique identifier for each trip</div></div>
+          <div class="dict-item"><div class="dict-key">vendor_id</div><div class="dict-val">Code indicating the provider associated with the trip</div></div>
+          <div class="dict-item"><div class="dict-key">pickup_datetime</div><div class="dict-val">Date and time when the meter was engaged</div></div>
+          <div class="dict-item"><div class="dict-key">dropoff_datetime</div><div class="dict-val">Date and time when meter was disengaged</div></div>
+          <div class="dict-item"><div class="dict-key">passenger_count</div><div class="dict-val">Number of passengers (driver entered)</div></div>
+          <div class="dict-item"><div class="dict-key">pickup_longitude</div><div class="dict-val">Longitude where the meter was engaged</div></div>
+          <div class="dict-item"><div class="dict-key">pickup_latitude</div><div class="dict-val">Latitude where the meter was engaged</div></div>
+          <div class="dict-item"><div class="dict-key">dropoff_longitude</div><div class="dict-val">Longitude where the meter was disengaged</div></div>
+          <div class="dict-item"><div class="dict-key">dropoff_latitude</div><div class="dict-val">Latitude where the meter was disengaged</div></div>
+          <div class="dict-item"><div class="dict-key">store_and_fwd_flag</div><div class="dict-val">Whether trip was stored in memory before sending (Y/N)</div></div>
+          <div class="dict-item target"><div class="dict-key">trip_duration ★ target</div><div class="dict-val">Duration of the trip in seconds</div></div>
         </div>
+        <a href="https://github.com/AlejandroPinto5/EDA-projects/blob/main/NYC-taxi-project/EDA_taxi_proj.ipynb" target="_blank" class="btn-link">
+          <i class="fa fa-github"></i> View Notebook — NYC Taxi EDA
+        </a>
+      </div>
 
-        </main-rp>
+      <div class="section-card">
+        <div class="section-num">// 02 — key findings</div>
+        <h2>Conclusions</h2>
+        <ul>
+          <li>Majority of rides follow a near log-normal distribution with a peak around exp(6.5) — roughly 17 minutes.</li>
+          <li>Several suspiciously short rides exist with less than 10 seconds duration.</li>
+          <li>A few huge outliers near log-duration of 12.</li>
+          <li>Most trips involve only 1 passenger; trips with 7–9 passengers are very rare.</li>
+          <li>Vendor 2 has more trips than Vendor 1.</li>
+          <li>Weekend pickups are much lower than weekdays, with a peak on Thursday.</li>
+          <li>Pickup volume is highest in late evenings, lower during morning peak hours.</li>
+          <li>Most trips are concentrated in a few significant geographic clusters, visible in lat/long histograms.</li>
+          <li>Trip durations are shorter during late night and early morning — correlating with lower traffic density.</li>
+          <li>Pickup count and trip duration show a positive correlation by hour.</li>
+          <li>Median trip duration does not vary significantly by vendor.</li>
+          <li>Passenger count 1, 2, and 3 have similar duration distributions. Higher counts have fewer outliers.</li>
+          <li>From the correlation heatmap, latitude and longitude features show higher correlation with trip duration than other features.</li>
+        </ul>
+      </div>
 
+    </div>
+  </div>
 
-              <!-- Footer -->
-<section class="footer">
-	<img src="https://i.ibb.co/jR7YH3p/sign.png" alt="Image">
-</section>
-            		<!-- Scripts  -->
-    	<script src="../controller.js"></script>
-	</body>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div><span class="footer-brand">[AP]</span><span class="footer-copy">© 2025 Alejandro Pinto</span></div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank"><i class="fa fa-github"></i></a>
+        <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank"><i class="fa fa-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('nav-links').classList.toggle('open'));</script>
+</body>
 </html>

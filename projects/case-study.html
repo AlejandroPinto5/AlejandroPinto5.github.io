@@ -1,123 +1,224 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<title>ML Online Grocery Case study</title>
-	<!-- css files -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
-
-	<link rel="icon" type="image/x-icon" href="https://i.ibb.co/0nHTTFb/image103.png">
-	<meta name="author" content="Alejandro Pinto">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Online Grocery Case Study | Alejandro Pinto</title>
+  <meta name="author" content="Alejandro Pinto">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' stroke='%2300c8ff' stroke-width='2' fill='none' opacity='0.6'/><text x='23' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%23e8f4ff'>A</text><text x='51' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%2300c8ff'>P</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap');
+    :root {
+      --bg:#080c14; --bg-2:#0d1424; --bg-card:#0f1929;
+      --border:rgba(0,200,255,0.12); --border-hi:rgba(0,200,255,0.35);
+      --accent:#00c8ff; --accent-2:#7b61ff; --accent-3:#00ffa3;
+      --text:#c8d8e8; --text-dim:#5a7080; --text-hi:#e8f4ff;
+      --font-mono:'JetBrains Mono','Courier New',monospace;
+      --font-sans:'Syne',system-ui,sans-serif;
+      --radius:8px; --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background-color:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:15px;line-height:1.7;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
 
+    /* BG GRID */
+    .bg-grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,200,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+    .scanline{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.4;z-index:9999;animation:scan 6s linear infinite;pointer-events:none;}
+    @keyframes scan{0%{top:0%}100%{top:100%}}
+
+    /* NAVBAR */
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-brand a{display:flex;align-items:center;gap:0.6rem;}
+    .nav-logo-svg{flex-shrink:0;transition:transform 0.4s ease;}
+    .nav-brand:hover .nav-logo-svg{transform:rotate(15deg) scale(1.08);}
+    .nav-brand-text{font-family:var(--font-sans);font-size:0.9rem;font-weight:700;color:var(--text-hi);}
+    .nav-links{display:flex;align-items:center;gap:2.5rem;}
+    .nav-link{font-size:0.82rem;color:var(--text-dim);letter-spacing:0.06em;transition:color var(--transition);display:flex;align-items:center;gap:0.4rem;}
+    .nav-link:hover{color:var(--accent);}
+    .link-num{color:var(--accent);font-size:0.75rem;}
+    .nav-cv{border:1px solid var(--border-hi);padding:0.35rem 0.9rem;border-radius:var(--radius);color:var(--accent)!important;}
+    .nav-cv:hover{background:rgba(0,200,255,0.1);}
+    .nav-socials{display:flex;gap:1.2rem;}
+    .social-icon{color:var(--text-dim);font-size:1rem;transition:color var(--transition);}
+    .social-icon:hover{color:var(--accent);}
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);transition:var(--transition);}
+
+    /* PAGE CONTENT */
+    .page-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:100px 2rem 5rem;}
+
+    .page-header{margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+    .page-tag{font-size:0.75rem;color:var(--accent);opacity:0.7;letter-spacing:0.06em;margin-bottom:0.8rem;}
+    .page-title{font-family:var(--font-sans);font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--text-hi);line-height:1.2;margin-bottom:1rem;}
+    .page-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.8;}
+
+    /* CONTENT STYLES */
+    .content-body h2{font-family:var(--font-sans);font-size:1.1rem;font-weight:700;color:var(--accent);margin:2.5rem 0 0.8rem;display:flex;align-items:center;gap:0.6rem;}
+    .content-body h2::before{content:'';display:inline-block;width:3px;height:1em;background:var(--accent);border-radius:2px;}
+    .content-body h3{font-family:var(--font-sans);font-size:0.95rem;font-weight:600;color:var(--accent-3);margin:1.5rem 0 0.5rem;}
+    .content-body p{font-size:0.85rem;color:var(--text);line-height:1.9;margin-bottom:1rem;}
+    .content-body ol,.content-body ul{padding-left:1.5rem;margin-bottom:1rem;}
+    .content-body li{font-size:0.85rem;color:var(--text);line-height:1.8;margin-bottom:0.3rem;}
+    .content-body b{color:var(--text-hi);}
+    .content-body a{color:var(--accent);transition:color var(--transition);}
+    .content-body a:hover{color:var(--accent-3);}
+
+    /* SECTION CARD */
+    .section-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;transition:border-color var(--transition),box-shadow var(--transition);}
+    .section-card:hover{border-color:var(--border-hi);box-shadow:0 8px 32px rgba(0,200,255,0.06);}
+    .section-num{font-size:0.7rem;color:var(--accent);opacity:0.5;margin-bottom:0.3rem;letter-spacing:0.08em;}
+
+    /* MATH BLOCK */
+    .math-block{background:var(--bg-2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.5rem;margin:1rem 0;overflow-x:auto;font-size:0.9rem;}
+
+    /* INFO BOX */
+    .info-box{border-left:3px solid var(--accent-2);background:rgba(123,97,255,0.05);border-radius:0 var(--radius) var(--radius) 0;padding:1rem 1.2rem;margin:1rem 0;font-size:0.82rem;color:var(--text-dim);}
+    .info-box b{color:var(--text-hi);}
+
+    /* FOOTER */
+    .site-footer{position:relative;z-index:1;border-top:1px solid var(--border);background:var(--bg);padding:2rem 5rem;}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+    .footer-brand{font-size:1rem;font-weight:700;color:var(--accent);margin-right:1rem;}
+    .footer-copy{font-size:0.75rem;color:var(--text-dim);}
+    .footer-right{display:flex;gap:1.2rem;}
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar{width:6px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:3px;}
+    ::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+
+    @media(max-width:768px){
+      .navbar{padding:0 1.5rem;}
+      .nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--border);padding:1.5rem;gap:1.2rem;}
+      .nav-links.open{display:flex;}
+      .hamburger{display:flex;}
+      .nav-socials{display:none;}
+      .page-wrap{padding:90px 1.2rem 3rem;}
+      .site-footer{padding:2rem 1.5rem;}
+    }
+  </style>
 </head>
-	<body>
-		<!-- Navbar -->
-		<nav class="nav container void-background">
-			<!-- This "nav-menu" is hidden on mobile -->
-			<!-- Add the modifier "is-active" to display it on mobile -->
-			<div class="nav-left">
-				<a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/	" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-linkedin"></i>
-					</span>
-				</a>
-				<a href="https://github.com/AlejandroPinto5" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-github"></i>
-					</span>
-				</a>
-				<a href="https://twitter.com/Alejo_Pintirris" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-twitter"></i>
-					</span>
-				</a>
-			</div>
+<body>
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
 
-			<div class="nav-right nav-menu">
-				<a class="nav-item" href="../index.html"><b>About</b></a>
-				<a class="nav-item" href="../index.html"><b>Projects</b></a>
-					<!-- <a class="nav-item" href="cv_AP.pdf" target="_blank" download> -->
-						<!-- <button class="download-button"><b>cv</b></button></a> -->
-			</div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="../index.html">
+        <svg width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-logo-svg">
+          <circle cx="50" cy="50" r="46" stroke="#00c8ff" stroke-width="1.8" fill="none" opacity="0.6"/>
+          <ellipse cx="50" cy="50" rx="14" ry="36" stroke="#00c8ff" stroke-width="1" fill="none" opacity="0.35" transform="rotate(-15 50 50)"/>
+          <text x="24" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#e8f4ff">A</text>
+          <text x="52" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#00c8ff">P</text>
+          <circle r="3.5" fill="#00ffa3" opacity="0.95">
+            <animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#orbit-path"/>
+            </animateMotion>
+          </circle>
+          <defs>
+            <path id="orbit-path" d="M 50 14 C 58 14,64 30,64 50 C 64 70,58 86,50 86 C 42 86,36 70,36 50 C 36 30,42 14,50 14" transform="rotate(-15 50 50)"/>
+          </defs>
+        </svg>
+        <span class="nav-brand-text">Alejandro Pinto</span>
+      </a>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="../index.html#about" class="nav-link"><span class="link-num">01.</span> about</a>
+      <a href="../index.html#research" class="nav-link"><span class="link-num">02.</span> research</a>
+      <a href="../index.html#projects" class="nav-link"><span class="link-num">03.</span> projects</a>
+      <a href="../cvAP-da.pdf" target="_blank" download class="nav-link nav-cv"><span class="link-num">//</span> resume.pdf</a>
+    </div>
+    <div class="nav-socials">
+      <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank"><i class="fa fa-github"></i></a>
+      <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank"><i class="fa fa-twitter"></i></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-			<span class="nav-toggle">
-				<span></span>
-				<span></span>
-				<span></span>
-			</span>
-		</nav>
+  <!-- CONTENT -->
+  <div class="page-wrap">
+    <div class="page-header">
+      <div class="page-tag">// case_study.py — python · ml · kpi</div>
+      <h1 class="page-title">Leveraging Machine Learning for Data-Driven Optimization in Online Grocery Business</h1>
+      <p class="page-desc">Large organizations use Key Performance Indicators (KPIs) to measure ongoing processes and understand project state. This case study covers KPIs, A/B testing, and ML-driven improvement for an online grocery store.</p>
+    </div>
 
-      <!-- start page -->
-      <main-rp>
-        <div class="index">
-  				<!-- Source: https://flic.kr/p/pAZBNK -->
-  				<img class="avatar-index container nav-item" href="../index.html" src="https://i.ibb.co/m0cLrhd/both-data.png">
-  				<!-- Navegation list -->
-  				<!-- <nav class="nav-list nav-menu">
-  					<ul>
-  							<li><a href="#info">ggg</a></li>
-  					</ul>
-  				</nav> -->
-  			</div>
-        <div class="rp box">
-          <h1 >Leveraging Machine Learning for Data-Driven Optimization in Online Grocery Business: An Online Grocery Store Case Study</h1>
-          <p>Large organizations developing software use Key Performance Indicators (KPI) to
-measure the ongoing process and to understand the state of the project. KPIs are
-also used to increase the performance of the organization by measuring the success.
-Here, it presents a case study for KPIs and A/B testing in an online grocey store and the Process of improvment with machine learning.</p>
+    <div class="content-body">
 
-      <ol>
-        <h2><li>KPI: Conversion Rate for Online Grocery Orders</li></h2>
-        <p>This KPI measures the percentage of visitors to Online grocery store's online grocery store who complete a purchase. It is a critical metric to track the effectiveness of the online shopping experience and the company's ability to convert website visitors into paying customers.</p>
-        <p><span class="math display">\[\text{Conversion rate} = \frac{\text{Number of completed online grocery orders}}{\text{Number of unique visitors to the online grocery store}} \times 100 \%\]</span></p>
-        <p>The target conversion rate may vary depending on Online grocery store's goals, industry benchmarks, and historical data. For example, if the current conversion rate is 2%, the target might be set at 3% to reflect an improvement goal.</p>
-        <h2><li>A/B Testing Scenario: Testing Different Call-to-Action (CTA) Buttons</li></h2>
-        <p> Online grocery store wants to optimize its online grocery store's conversion rate by testing different call-to-action (CTA) buttons on the checkout page. The company will conduct an A/B test to compare the performance of the original "Buy Now" CTA button with a variation that says "Add to Cart" to determine which one performs better in terms of conversion rate.</p>
-        <p> Online grocery store hypothesizes that changing the CTA button from "Buy Now" to "Add to Cart" will result in a higher conversion rate, as it may provide a clearer and less committal call to action for users.</p>
+      <div class="section-card">
+        <div class="section-num">// 01</div>
+        <h2>KPI: Conversion Rate for Online Grocery Orders</h2>
+        <p>This KPI measures the percentage of visitors who complete a purchase. It is a critical metric to track the effectiveness of the online shopping experience and the company's ability to convert website visitors into paying customers.</p>
+        <div class="math-block">
+          \[\text{Conversion rate} = \frac{\text{Number of completed online grocery orders}}{\text{Number of unique visitors}} \times 100\%\]
+        </div>
+        <p>The target conversion rate may vary depending on the company's goals, industry benchmarks, and historical data. For example, if the current conversion rate is 2%, the target might be set at 3% to reflect an improvement goal.</p>
+      </div>
+
+      <div class="section-card">
+        <div class="section-num">// 02</div>
+        <h2>A/B Testing Scenario: Call-to-Action Buttons</h2>
+        <p>The goal is to optimize the conversion rate by testing different call-to-action (CTA) buttons on the checkout page — comparing the original <b>"Buy Now"</b> against a variation that says <b>"Add to Cart"</b>.</p>
+        <p>The hypothesis: changing to "Add to Cart" provides a clearer and less committal call to action for users, leading to a higher conversion rate.</p>
+        <h3>Testing Plan</h3>
         <ul>
-          Testing Plan:
-          <li>Split the website traffic equally between the original "Buy Now" CTA button and the "Add to Cart" variation.</li>
-          <li>Run the A/B test for a specified duration, such as two weeks, to gather sufficient data.</li>
+          <li>Split website traffic equally between both CTA variations.</li>
+          <li>Run the A/B test for two weeks to gather sufficient data.</li>
           <li>Monitor the conversion rate for both variations during the testing period.</li>
-          <li>Analyze the results using statistical significance testing to determine the winning variation.</li>
-          <li>If the "Add to Cart" variation outperforms the original, implement the change permanently on the website. If not, revert to the original "Buy Now" CTA button or iterate with another variation to test.</li>
+          <li>Analyze results using statistical significance testing to determine the winner.</li>
+          <li>If "Add to Cart" outperforms, implement permanently; otherwise revert or iterate.</li>
         </ul>
-        <p><b>Monitoring and Analysis:</b> During the testing period, Online grocery store will track and compare the conversion rates for both variations using a reliable analytics tool. Once the test is complete, statistical significance testing will be used to determine if the results are statistically significant and conclusive. If the "Add to Cart" variation proves to be the winner, it will be implemented permanently on the website to optimize the conversion rate for online grocery orders.</p>
-        <p><b>Note:</b> KPIs and A/B testing scenarios may vary depending on the specific goals, objectives, and context of Online grocery store's business. It's important to tailor KPIs and A/B testing scenarios to the unique needs and requirements of the company to effectively measure performance and make data-driven decisions.</p>
-        <h2><li>How Machine Learning can be use to enhace KPIs and A/B testing:</li></h2>
-        <p>Machine learning can be used to enhance the example of a KPI and A/B testing scenario for Online grocery store, the supermarket company, in several ways:</p>
+        <div class="info-box">
+          <b>Monitoring & Analysis:</b> Statistical significance testing will be used to determine if results are conclusive. KPIs and A/B testing scenarios should always be tailored to the unique needs of the business.
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-num">// 03</div>
+        <h2>How ML Enhances KPIs and A/B Testing</h2>
+        <p>Machine learning can amplify the value of KPIs and A/B testing in several concrete ways:</p>
         <ul>
-          <li><b>Personalized Product Recommendations:</b> Machine learning algorithms can analyze customer browsing and purchasing behavior to provide personalized product recommendations to online grocery store visitors. This can improve the relevance and accuracy of product recommendations, leading to higher conversion rates as customers are more likely to add recommended products to their cart or make a purchase.</li>
-          <li><b>Predictive Analytics for Demand Forecasting:</b> Machine learning algorithms can analyze historical sales data, weather data, and other relevant factors to forecast demand for different grocery products. This can help Online grocery store optimize inventory management, pricing, and promotions, resulting in better product availability, competitive pricing, and increased sales.</li>
-          <li><b>Fraud Detection:</b> Machine learning algorithms can analyze transaction data in real-time to detect fraudulent activities, such as fake accounts, stolen credit cards, or suspicious purchasing patterns. This can help Online grocery store prevent financial losses, protect customer data, and maintain trust in the online grocery store, leading to improved customer satisfaction and retention.</li>
-          <li><b>Sentiment Analysis:</b> Machine learning algorithms can analyze customer reviews, feedback, and social media data to perform sentiment analysis, which can provide insights into customer satisfaction, preferences, and concerns. This information can help Online grocery store identify areas of improvement, optimize product offerings, and enhance customer experience, ultimately leading to higher customer loyalty and retention.</li>
-          <li><b>Automated Pricing Optimization:</b> Machine learning algorithms can analyze market data, competitor prices, and customer behavior data to optimize pricing strategies dynamically. This can help Online grocery store adjust prices in real-time based on demand, competition, and other factors, leading to improved profitability, competitiveness, and customer value.</li>
+          <li><b>Personalized Product Recommendations:</b> Algorithms analyze browsing and purchasing behavior to surface relevant products, increasing conversion rates.</li>
+          <li><b>Predictive Analytics for Demand Forecasting:</b> Historical sales, weather data, and other factors are used to forecast demand and optimize inventory, pricing, and promotions.</li>
+          <li><b>Fraud Detection:</b> Real-time transaction analysis identifies fake accounts, stolen cards, or suspicious purchasing patterns — protecting revenue and customer trust.</li>
+          <li><b>Sentiment Analysis:</b> Customer reviews and social media data are analyzed to surface insights on satisfaction, preferences, and areas of improvement.</li>
+          <li><b>Automated Pricing Optimization:</b> Market data, competitor prices, and behavior are used to dynamically adjust prices in real-time, improving profitability.</li>
         </ul>
-        <p>Machine learning can significantly contribute to optimizing KPIs and A/B testing scenarios for Online grocery store by leveraging data-driven insights and automated decision-making to enhance various aspects of the online grocery business.</p>
-      </ol>
+      </div>
 
-          </div>
-<!-- <a  href="netflix-analysis/pieplot.html"><b>test chart on html</b></a> -->
-<!-- <p>test:</p>
-<pre>
-<code>python</code>
-<code>hello</code>
-<code>world</code>
- </pre> -->
-      </main-rp>
+    </div>
+  </div>
 
-    <!-- Footer -->
-		<section class="footer">
-			<img src="https://i.ibb.co/jR7YH3p/sign.png" alt="Image">
-		</section>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-brand">[AP]</span>
+        <span class="footer-copy">© 2025 Alejandro Pinto</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank"><i class="fa fa-github"></i></a>
+        <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank"><i class="fa fa-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
 
-		<!-- Scripts  -->
-		<script src="../controller.js"></script>
-	</body>
+  <script>
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+  </script>
+</body>
 </html>

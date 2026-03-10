@@ -1,208 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<title>Ruddlesden-Popper</title>
-	<!-- css files -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css">
-	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
-
-	<link rel="icon" type="image/x-icon" href="https://i.ibb.co/0nHTTFb/image103.png">
-	<meta name="author" content="Alejandro Pinto">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruddlesden-Popper Oxynitrides | Alejandro Pinto</title>
+  <meta name="author" content="Alejandro Pinto">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' stroke='%2300c8ff' stroke-width='2' fill='none' opacity='0.6'/><text x='23' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%23e8f4ff'>A</text><text x='51' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%2300c8ff'>P</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  </script>
-
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    :root{--bg:#080c14;--bg-2:#0d1424;--bg-card:#0f1929;--border:rgba(0,200,255,0.12);--border-hi:rgba(0,200,255,0.35);--accent:#00c8ff;--accent-2:#7b61ff;--accent-3:#00ffa3;--text:#c8d8e8;--text-dim:#5a7080;--text-hi:#e8f4ff;--font-mono:'JetBrains Mono','Courier New',monospace;--font-sans:'Syne',system-ui,sans-serif;--radius:8px;--transition:0.3s cubic-bezier(0.4,0,0.2,1);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+    body{background-color:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:15px;line-height:1.7;overflow-x:hidden;}a{text-decoration:none;color:inherit;}
+    .bg-grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,200,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+    .scanline{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.4;z-index:9999;animation:scan 6s linear infinite;pointer-events:none;}
+    @keyframes scan{0%{top:0%}100%{top:100%}}
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(8,12,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+    .nav-brand a{display:flex;align-items:center;gap:0.6rem;}.nav-logo-svg{flex-shrink:0;transition:transform 0.4s ease;}.nav-brand:hover .nav-logo-svg{transform:rotate(15deg) scale(1.08);}
+    .nav-brand-text{font-family:var(--font-sans);font-size:0.9rem;font-weight:700;color:var(--text-hi);}
+    .nav-links{display:flex;align-items:center;gap:2.5rem;}.nav-link{font-size:0.82rem;color:var(--text-dim);letter-spacing:0.06em;transition:color var(--transition);display:flex;align-items:center;gap:0.4rem;}.nav-link:hover{color:var(--accent);}.link-num{color:var(--accent);font-size:0.75rem;}.nav-cv{border:1px solid var(--border-hi);padding:0.35rem 0.9rem;border-radius:var(--radius);color:var(--accent)!important;}.nav-cv:hover{background:rgba(0,200,255,0.1);}
+    .nav-socials{display:flex;gap:1.2rem;}.social-icon{color:var(--text-dim);font-size:1rem;transition:color var(--transition);}.social-icon:hover{color:var(--accent);}
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}.hamburger span{display:block;width:22px;height:2px;background:var(--text);}
+    .page-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:100px 2rem 5rem;}
+    .page-header{margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+    .page-tag{font-size:0.75rem;color:var(--accent-2);opacity:0.9;letter-spacing:0.06em;margin-bottom:0.8rem;}
+    .page-title{font-family:var(--font-sans);font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:800;color:var(--text-hi);line-height:1.25;margin-bottom:1rem;}
+    .page-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.8;}
+    .content-body h2{font-family:var(--font-sans);font-size:1.1rem;font-weight:700;color:var(--accent);margin:2.5rem 0 0.8rem;display:flex;align-items:center;gap:0.6rem;}
+    .content-body h2::before{content:'';display:inline-block;width:3px;height:1em;background:var(--accent);border-radius:2px;}
+    .content-body h3{font-family:var(--font-sans);font-size:0.95rem;font-weight:600;color:var(--accent-3);margin:1.5rem 0 0.5rem;}
+    .content-body p{font-size:0.85rem;color:var(--text);line-height:1.9;margin-bottom:1rem;}
+    .content-body a{color:var(--accent);transition:color var(--transition);}.content-body a:hover{color:var(--accent-3);}
+    .section-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;transition:border-color var(--transition),box-shadow var(--transition);}.section-card:hover{border-color:var(--border-hi);box-shadow:0 8px 32px rgba(0,200,255,0.06);}
+    .section-num{font-size:0.7rem;color:var(--accent);opacity:0.5;margin-bottom:0.3rem;letter-spacing:0.08em;}
+    .abstract-block{border-left:3px solid var(--accent-2);background:rgba(123,97,255,0.05);border-radius:0 var(--radius) var(--radius) 0;padding:1.2rem 1.5rem;font-size:0.84rem;color:var(--text);line-height:1.9;}
+    .pub-badges{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.2rem;}
+    .badge{font-size:0.68rem;padding:0.25rem 0.7rem;border-radius:3px;letter-spacing:0.05em;font-weight:500;}
+    .badge.journal{background:rgba(123,97,255,0.15);color:var(--accent-2);border:1px solid rgba(123,97,255,0.3);}
+    .badge.type{background:rgba(0,255,163,0.1);color:var(--accent-3);border:1px solid rgba(0,255,163,0.25);}
+    .badge.tool{background:rgba(0,200,255,0.08);color:var(--accent);border:1px solid var(--border);}
+    .fig-wrap{margin:1.5rem 0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--bg-2);}
+    .fig-wrap img{width:100%;height:auto;display:block;filter:brightness(0.95);}
+    .fig-caption{font-size:0.75rem;color:var(--text-dim);padding:0.6rem 1rem;border-top:1px solid var(--border);font-style:italic;}
+    .site-footer{position:relative;z-index:1;border-top:1px solid var(--border);background:var(--bg);padding:2rem 5rem;}.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}.footer-brand{font-size:1rem;font-weight:700;color:var(--accent);margin-right:1rem;}.footer-copy{font-size:0.75rem;color:var(--text-dim);}.footer-right{display:flex;gap:1.2rem;}
+    ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+    @media(max-width:768px){.navbar{padding:0 1.5rem;}.nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--border);padding:1.5rem;gap:1.2rem;}.nav-links.open{display:flex;}.hamburger{display:flex;}.nav-socials{display:none;}.page-wrap{padding:90px 1.2rem 3rem;}.site-footer{padding:2rem 1.5rem;}}
+  </style>
 </head>
-	<body>
-		<!-- Navbar -->
-		<nav class="nav container void-background">
-			<!-- This "nav-menu" is hidden on mobile -->
-			<!-- Add the modifier "is-active" to display it on mobile -->
-			<div class="nav-left">
-				<a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/	" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-linkedin"></i>
-					</span>
-				</a>
-				<a href="https://github.com/AlejandroPinto5" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-github"></i>
-					</span>
-				</a>
-				<a href="https://twitter.com/Alejo_Pintirris" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-twitter"></i>
-					</span>
-				</a>
-			</div>
+<body>
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
 
-			<div class="nav-right nav-menu">
-				<a class="nav-item" href="../index.html"><b>About</b></a>
-				<a class="nav-item" href="../index.html"><b>Projects</b></a>
-					<!-- <a class="nav-item" href="cv_AP.pdf" target="_blank" download> -->
-						<!-- <button class="download-button"><b>cv</b></button></a> -->
-			</div>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="../index.html">
+        <svg width="38" height="38" viewBox="0 0 100 100" fill="none" class="nav-logo-svg">
+          <circle cx="50" cy="50" r="46" stroke="#00c8ff" stroke-width="1.8" fill="none" opacity="0.6"/>
+          <ellipse cx="50" cy="50" rx="14" ry="36" stroke="#00c8ff" stroke-width="1" fill="none" opacity="0.35" transform="rotate(-15 50 50)"/>
+          <text x="24" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#e8f4ff">A</text>
+          <text x="52" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#00c8ff">P</text>
+          <circle r="3.5" fill="#00ffa3" opacity="0.95"><animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto"><mpath href="#op9"/></animateMotion></circle>
+          <defs><path id="op9" d="M 50 14 C 58 14,64 30,64 50 C 64 70,58 86,50 86 C 42 86,36 70,36 50 C 36 30,42 14,50 14" transform="rotate(-15 50 50)"/></defs>
+        </svg>
+        <span class="nav-brand-text">Alejandro Pinto</span>
+      </a>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="../index.html#about" class="nav-link"><span class="link-num">01.</span> about</a>
+      <a href="../index.html#research" class="nav-link"><span class="link-num">02.</span> research</a>
+      <a href="../index.html#projects" class="nav-link"><span class="link-num">03.</span> projects</a>
+      <a href="../cvAP-da.pdf" target="_blank" download class="nav-link nav-cv"><span class="link-num">//</span> resume.pdf</a>
+    </div>
+    <div class="nav-socials">
+      <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank"><i class="fa fa-github"></i></a>
+      <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank"><i class="fa fa-twitter"></i></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
 
-			<span class="nav-toggle">
-				<span></span>
-				<span></span>
-				<span></span>
-			</span>
-		</nav>
-			<!-- start page -->
-		<main-rp id="rp">
-			<div class="index">
-				<!-- Source: https://flic.kr/p/pAZBNK -->
-				<img class="avatar-index container nav-item" href="../index.html" src="https://i.ibb.co/m0cLrhd/both-data.png">
-				<!-- Navegation list -->
-				<nav class="nav-list nav-menu">
-					<ul>
-							<li><a href="#abstract">Abstract</a></li>
-							<li><a href="#part1">Looking for the Most Stable RP Oxinitrides</a></li>
-							<ul>
-								<li><a href="#part1-1">Anionic sustitution</a></li>
-							</ul>
-					</ul>
-				</nav>
-			</div>
-      <div class="rp box">
-        <h1 id="title-rp"><b>THEORETICAL INVESTIGATION OF THE RUDLESDEN-POPPER OXINITRIDES
-          STRUCTURES <span class="math inline"><em>S</em><em>r</em><sub>2</sub>(<em>T</em><em>a</em>,<em>N</em><em>b</em>)<em>O</em><sub>4 − <em>x</em></sub><em>N</em><sub><em>x</em></sub></span>
-          VIA DENSITY FUNCTIONAL THEORY </b>
-        </h1>
-				<ol>
-        	<li><h2 id="abstract">ABATRACT:</h2></li>
-        		<p>The Ruddlesden-Popper phase (<span class="smallcaps">rp</span>) phase is a perovskite arranged in dislocated layers, with an intergrowth of
-          			<span class="math inline"><em>A</em><em>B</em><em>X</em><sub>3</sub></span>
-          			perovskite layers and an <span class="math inline"><em>A</em><em>X</em></span> layer:<span
-          			class="math inline">(<em>A</em><em>X</em>)(<em>A</em><em>B</em><em>X</em><sub>3</sub>)</span>.
-          			Partial replacement of oxygen by nitrogen (due to similarities in
-          			electronegativity, polarizability, ionic radio) leads to modifications
-          			of electrical, optical, catalytic and magnetic properties. Additionally,
-          			a possible substitution-induced ferroelectric behaviour is
-          			anticipated.</p>
-        		<p>This work presents the analysis of the structural, electronic and
-            		phononic properties of the compound <span class="math inline"><em>S</em><em>r</em><sub>2</sub>(<em>T</em><em>a</em>,<em>N</em><em>b</em>)<em>O</em><sub>4 − <em>x</em></sub><em>N</em><sub><em>x</em></sub></span>
-            		for two anion concentrations <span class="math inline"><em>x</em> = 0.5</span> y <span
-            		class="math inline"><em>x</em> = 1.0</span>. This was achieved by means
-            		of <span class="smallcaps">dft</span> implemented in the Vienna
-            		ab-initio simulation package (<span class="smallcaps">vasp</span>)
-            		compiled in the "Guane" cluster of the supercomputer of the
-            		Industrial University of Santander. The substitution was carried out
-            		through the <span class="smallcaps">sod</span> code obtaining 11
-            		configurations for <span class="math inline"><em>x</em> = 1.0</span>,
-            		and two configurations for <span
-            		class="math inline"><em>x</em> = 0.5</span>, all with different anionic
-            		orders. Subsequently, structural relaxation was carried out, finding two
-            		configurations of minimum energy with <em>trans</em> and <em>cis</em>
-            		anionic ordering, belonging to the space group <span
-            		class="math inline"><em>I</em><em>m</em><em>m</em><em>m</em></span>
-            		(S.G. 71) and <span class="math inline"><em>C</em><em>m</em><em>c</em><em>m</em></span>
-            		(S.G. 63), respectively. <span class="smallcaps">dft</span> Calculations
-            		indicate that the <em>cis</em> anion order is energetically more
-            		favourable than the <em>trans</em> order. The electronic structure
-            		suggests an insulating material with a reduction in bandgap at point
-            		<span class="math inline"><em>Γ</em></span> allowing photocatalysis in
-            		the visible range for water splitting. The phononic structure shows
-            		imaginary modes that lead to atomic displacements and a drop in
-            		symmetry, achieving a phase transition to the most favourable chiral
-            		soft mode with space group <span class="math inline"><em>C</em>222<sub>1</sub></span> (SG. 20).</p>
+  <div class="page-wrap">
+    <div class="page-header">
+      <div class="page-tag">// research · dft · computational physics · vasp</div>
+      <h1 class="page-title">Theoretical Investigation of the Ruddlesden-Popper Oxynitrides Sr₂(Ta,Nb)O₄₋ₓNₓ via Density Functional Theory</h1>
+      <p class="page-desc">DFT study of structural, electronic, and phononic properties of RP-phase oxynitrides, searching for the most stable anionic orderings and identifying potential ferroelectric phase transitions.</p>
+    </div>
 
-          <li><h2 id="part1">SEARCH FOR THE MOST STABLE RP OXYNITRIDES:</h2></li>
-            <p>This chapter presents a structural analysis of the oxynitrides <span class="smallcaps">rp</span> <span
-              class="math inline"><em>S</em><em>r</em><sub>2</sub>(<em>T</em><em>a</em>,<em>N</em><em>b</em>)<em>O</em><sub>4 − <em>x</em></sub><em>N</em><sub><em>x</em></sub></span>
-              and the search for the most stable anionic orderings. It begins with a
-              brief description of perovskite oxides <span class="smallcaps">rp</span>, then describes the partial anionic
-              substitution <span class="math inline"><em>x</em> = 0.5</span> of <span class="math inline"><em>O</em><sup>2−</sup></span> by <span class="math inline"><em>N</em><sup>3−</sup></span>, and the partial
-              substitution <span class="math inline"><em>x</em> = 1</span> of <span class="math inline"><em>O</em><sup>2−</sup></span> by <span class="math inline"><em>N</em><sup>3−</sup></span>. The anionic
-              substitutions are carried out using the <a href="https://github.com/gcmt-group/sod" target="_blank">sod</a> package of tools <span class="citation"
-              data-cites="Grau-Crespo2007"></span>, which is a package of tools for
-              computational modeling of periodic systems with site substitutional
-              disorder. A disordered system is modeled as a copy of the cell, where
-              different combinations of disorder are placed at the crystallographic
-              sites. The cell different from the original cell is called a
-              <em>’configuration’</em>. The process of identifying the symmetry of
-              each configuration is performed with the symmetry operations of the
-              crystallographic group to which it corresponds. Subsequently,
-              symmetrically equivalent configurations are identified, and only
-              configurations with unique symmetry are taken into account. Once the
-              unique configurations are identified, the <span class="smallcaps">sod</span> code shows the unique configurations, and
-              their degeneracy, that is, the equivalent configurations <span class="citation" data-cites="Grau-Crespo2007"></span>.</p>
-							<figure>
-  							<img src="https://i.ibb.co/HVR5ctw/path537.png" alt="#Fig. config">
-  							<figcaption>Equivalent configurations and inequivalent configurations comparison.</figcaption>
-							</figure>
-						<p>The criterion of equivalence between two configurations is based on the concept of isometric transformations, which are geometric operations such as translations, rotations, and reflections, that maintain all distances and angles within the transformed object constant. In Figure <a href="#Fig. config" data-reference-type="ref" data-reference="Fig. config">configurations</a>, it can be seen that equivalent configurations are the same configuration because a transformation can be 	used to verify that a configuration is equal to the untransformed configuration. On the other hand, inequivalent configurations do not have a transformation to obtain an equivalent configuration. The fact that two configurations have the same space group does not imply that they will have the same energy <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, since the elements occupying the crystallographic sites may change, meaning that the energy of the structure depends on the site occupancy and interactions. Concluding the chapter, an analysis of the structural energy of each configuration is presented. Additionally, with the help of the program <a href="https://uspex-team.org/online_utilities/poscar2cif/"><span class="smallcaps">poscar2cif</span></a>, the crystallographic space group of each configuration was obtained.</p>
-							<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-								<hr />
-								<ol>
-									<li id="fn1"><p><span class="citation" data-cites="Grau-Crespo2007"></span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-								</ol>
-							</section>
-						<ul>
-							<li><h3 id="part1-1">Anionic sustitution:</h3></li>
-						</ul>
-							<p>The focus of this work is the Ruddlesden-Popper (<span
-								class="smallcaps">rp</span>) phase, which has a general formula of <span
-								class="math inline"><em>A</em><sub><em>n</em> + 1</sub><em>B</em><sub><em>n</em></sub><em>X</em><sub>3<em>n</em> + 1</sub>(<em>n</em>=1)</span>,
-								where <span class="math inline"><em>A</em></span> and <span
-								class="math inline"><em>B</em></span> represent the cations, and <span
-								class="math inline"><em>X</em></span> are the anions in the
-								structure&lt;sup&gt;1&lt;/sup&gt;. The cations occupying the
-								crystallographic sites are strontium <span
-								class="math inline">(<em>S</em><em>r</em>)</span> for site <span
-								class="math inline"><em>A</em></span>, niobium or tantalum <span
-								class="math inline">(<em>N</em><em>b</em>,<em>T</em><em>a</em>)</span>
-								for site <span class="math inline"><em>B</em></span>, and oxygen <span
-								class="math inline">(<em>O</em>)</span> for site <span
-								class="math inline"><em>X</em></span>. That is, the two main crystal
-								structures of the <span class="smallcaps">rp</span> phase are <span
-								class="math inline"><em>S</em><em>r</em><sub>2</sub><em>T</em><em>a</em><em>O</em><sub>4</sub></span>
-								and <span
-								class="math inline"><em>S</em><em>r</em><sub>2</sub><em>N</em><em>b</em><em>O</em><sub>4</sub></span>,
-								as shown in Figure &lt;a href="#Fig. rp_nb-ta" data-reference-type="ref"
-								data-reference="Fig. rp_nb-ta"&gt;[Fig. rp_nb-ta]&lt;/a&gt;, obtained
-								with the program <span
-								class="smallcaps">vesta</span>&lt;sup&gt;2&lt;/sup&gt;.&lt;/p&gt;
-								&lt;p&gt;These crystal structures are represented by the
-								crystallographic space group <span
-								class="math inline"><em>I</em>4/<em>m</em><em>m</em><em>m</em></span>
-								(139) and have cell parameters of <span
-								class="math inline"><em>a</em></span> = 4.02994 Å and <span
-								class="math inline"><em>c</em></span> = 12.64448 Å, <span
-								class="math inline"><em>α</em> = <em>β</em> = <em>γ</em> = 90<sup>∘</sup></span>
-								and volume of <span class="math inline">205.35</span> for <span
-								class="math inline"><em>S</em><em>r</em><sub>2</sub><em>T</em><em>a</em><em>O</em><sub>4</sub></span>,
-								and <span class="math inline"><em>a</em></span> = 4.04552 Å and <span
-								class="math inline"><em>c</em></span> =12.74460 Å, <span
-								class="math inline"><em>α</em> = <em>β</em> = <em>γ</em> = 90<sup>∘</sup></span>
-								and volume of <span class="math inline">208.58</span> for <span
-								class="math inline"><em>S</em><em>r</em><sub>2</sub><em>N</em><em>b</em><em>O</em><sub>4</sub></span>,
-								according to experimental data <sup>3,</sup><sup>4,</sup><sup>5</sup>.</p>
-								<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-									<hr />
-									<ol>
-										<li id="fn1"><p><span class="citation" data-cites="Beznosikov2000"></span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-										<li id="fn2"><p><span class="citation" data-cites="Momma2011"></span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-										<li id="fn3"><p><span class="citation" data-cites="Clarke2002"></span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-										<li id="fn4"><p><span class="citation" data-cites="Tobias2004"></span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-										<li id="fn5"><p><span class="citation" data-cites="Diot1999CrystalN"></span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-									</ol>
-								</section>
-							</p>
-						</ol>
+    <div class="content-body">
+
+      <div class="section-card">
+        <div class="section-num">// abstract</div>
+        <h2>Abstract</h2>
+        <div class="pub-badges">
+          <span class="badge journal">Computational Physics</span>
+          <span class="badge type">DFT Study</span>
+          <span class="badge tool">VASP</span>
+          <span class="badge tool">SOD Code</span>
+          <span class="badge tool">GUANE Supercomputer</span>
+        </div>
+        <div class="abstract-block">
+          <p>The Ruddlesden-Popper (RP) phase is a perovskite arranged in dislocated layers, with an intergrowth of \(ABX_3\) perovskite layers and an \(AX\) layer: \((AX)(ABX_3)\). Partial replacement of oxygen by nitrogen leads to modifications of electrical, optical, catalytic and magnetic properties, with a possible substitution-induced ferroelectric behaviour anticipated.</p>
+          <p>This work presents the analysis of structural, electronic, and phononic properties of \(Sr_2(Ta,Nb)O_{4-x}N_x\) for two anion concentrations \(x=0.5\) and \(x=1.0\), achieved by means of DFT implemented in VASP, compiled in the "Guane" cluster of the supercomputer of the Industrial University of Santander.</p>
+          <p>The substitution was carried out through the SOD code obtaining 11 configurations for \(x=1.0\) and two configurations for \(x=0.5\). Structural relaxation found two minimum energy configurations with <em>trans</em> and <em>cis</em> anionic ordering, belonging to space groups \(Immm\) (S.G. 71) and \(Cmcm\) (S.G. 63), respectively. DFT calculations indicate the <em>cis</em> anion order is energetically more favourable. The phononic structure shows imaginary modes leading to a phase transition to the most favourable chiral soft mode with space group \(C222_1\) (SG. 20).</p>
+        </div>
       </div>
-		</main-rp>
 
+      <div class="section-card">
+        <div class="section-num">// 01</div>
+        <h2>Search for the Most Stable RP Oxynitrides</h2>
+        <p>This chapter presents a structural analysis of the oxynitrides RP phase \(Sr_2(Ta,Nb)O_{4-x}N_x\) and the search for the most stable anionic orderings. The anionic substitutions are carried out using the <a href="https://github.com/gcmt-group/sod" target="_blank">SOD package</a>, a tool for computational modeling of periodic systems with site substitutional disorder.</p>
+        <p>A disordered system is modeled as a copy of the cell where different combinations of disorder are placed at the crystallographic sites. Each configuration different from the original is identified by its symmetry operations, and symmetrically equivalent configurations are grouped — only configurations with unique symmetry are considered.</p>
 
-		<section class="footer">
-			<img src="https://i.ibb.co/jR7YH3p/sign.png" alt="Image">
-		</section>
+        <div class="fig-wrap">
+          <img src="https://i.ibb.co/HVR5ctw/path537.png" alt="Equivalent vs inequivalent configurations">
+          <div class="fig-caption">Equivalent configurations and inequivalent configurations comparison.</div>
+        </div>
 
-		<!-- Scripts  -->
-		<script src="controller.js"></script>
-	</body>
+        <p>The equivalence criterion is based on isometric transformations (translations, rotations, reflections). Two configurations sharing the same space group do not necessarily have the same energy — the energy depends on site occupancy and atomic interactions.</p>
+
+        <h3>Anionic Substitution</h3>
+        <p>The RP phase has the general formula \(A_{n+1}B_nX_{3n+1} (n=1)\), where \(A\) = Sr, \(B\) = Nb or Ta, and \(X\) = O. The two main crystal structures are \(Sr_2TaO_4\) and \(Sr_2NbO_4\), both represented by space group \(I4/mmm\) (139).</p>
+        <p>Cell parameters: \(a = 4.02994\) Å and \(c = 12.64448\) Å for \(Sr_2TaO_4\) (volume 205.35 ų); \(a = 4.04552\) Å and \(c = 12.74460\) Å for \(Sr_2NbO_4\) (volume 208.58 ų), consistent with experimental data.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div><span class="footer-brand">[AP]</span><span class="footer-copy">© 2025 Alejandro Pinto</span></div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank"><i class="fa fa-github"></i></a>
+        <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank"><i class="fa fa-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('nav-links').classList.toggle('open'));</script>
+</body>
 </html>
