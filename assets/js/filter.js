@@ -1,54 +1,24 @@
-
-let sortOptions = document.getElementById('sort-options')
-let btns = sortOptions.getElementsByClassName('btn')
-
+// Filter projects by category
 function filterSelection(str) {
-	let items = document.getElementsByClassName('filterItems')
+  const items = document.getElementsByClassName('filterItems');
+  const btns = document.querySelectorAll('.filter-btn');
 
-	if(str == "all"){ str = "" }
+  // Update active button
+  btns.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.filter === str) btn.classList.add('active');
+  });
 
-	Array.from(items).forEach(item => {
-		removeClass(item, 'show')
-		if(item.className.indexOf(str) > -1){
-			addClass(item, 'show')
-			console.log("working")
-		}
-	})
-}
-
-function addClass(element, name){
-		let itemClass, itemName
-
-		itemClass = element.className.split(' ')
-		itemName = name.split(' ')
-
-		for(let i = 0; i < itemName.length; i++){
-			if(itemClass.indexOf(itemName[i]) == -1){
-				element.className += " " + itemName[i]
-			}
-		}
-}
-
-function removeClass(element, name){
-	let itemClass, itemName;
-
-	itemClass = element.className.split(' ')
-	itemName = name.split(' ')
-
- for (i = 0; i < itemName.length; i++) {
-    while (itemClass.indexOf(itemName[i]) > -1) {
-      itemClass.splice(itemClass.indexOf(itemName[i]), 1);
+  // Show/hide items
+  Array.from(items).forEach(item => {
+    item.classList.remove('show');
+    if (str === 'all' || item.classList.contains(str)) {
+      item.classList.add('show');
     }
-  }
-  element.className = itemClass.join(" ")
+  });
 }
 
-Array.from(btns).forEach((btn) => {
-	btn.addEventListener('click', () => {
-		let current = document.getElementsByClassName('active')
-		current[0].className = current[0].className.replace(' active', '')
-		this.className += ' active';
-	})
-})
-
-filterSelection("all")
+// Initialize — show all on load
+document.addEventListener('DOMContentLoaded', () => {
+  filterSelection('all');
+});

@@ -1,358 +1,814 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<title>Alejandro Pinto</title>
-	<!-- css files -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css">
-	<link rel="stylesheet" tybpe="text/css" href="assets/css/styles.css">
-
-	<link rel="icon" type="image/x-icon" href="https://i.ibb.co/0nHTTFb/image103.png">
-	<meta name="author" content="ALejandro Pinto">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-	<!-- Bootstrap -->
-	<!-- <link rel="stylesheet" type="text/css"  href="assets/css/bootstrap.css"> -->
-	<!-- <script type="text/javascript" src="js/modernizr.custom.js"></script> -->
+  <title>Alejandro Pinto | Portfolio</title>
+  <meta name="author" content="Alejandro Pinto">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' stroke='%2300c8ff' stroke-width='2' fill='none' opacity='0.6'/><ellipse cx='50' cy='50' rx='13' ry='34' stroke='%2300c8ff' stroke-width='1.2' fill='none' opacity='0.4' transform='rotate(-15 50 50)'/><text x='23' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%23e8f4ff'>A</text><text x='51' y='63' font-family='sans-serif' font-weight='900' font-size='33' fill='%2300c8ff'>P</text><circle r='4' fill='%2300ffa3'><animateMotion dur='2.8s' repeatCount='indefinite'><mpath href='%23op'/></animateMotion></circle><defs><path id='op' d='M50 16C58 16,64 31,64 50C64 69,58 84,50 84C42 84,36 69,36 50C36 31,42 16,50 16' transform='rotate(-15 50 50)'/></defs></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-	<body>
-		<!-- Navbar -->
-		<nav class="nav container void-background">
-			<!-- This "nav-menu" is hidden on mobile -->
-			<!-- Add the modifier "is-active" to display it on mobile -->
-			<div class="nav-left">
-				<a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/	" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-linkedin"></i>
-					</span>
-				</a>
-				<a href="https://github.com/AlejandroPinto5" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-github"></i>
-					</span>
-				</a>
-				<a href="https://twitter.com/Alejo_Pintirris" class="nav-item">
-					<span class="icon">
-						<i class="fa fa-twitter"></i>
-					</span>
-				</a>
-			</div>
+<body>
 
-			<div class="nav-right nav-menu">
-				<a class="nav-item" href="#about"><b>About</b></a>
-				<a class="nav-item" href="#projects"><b>Projects</b></a>
-					<a class="nav-item" href="cvAP-da.pdf" target="_blank" download>
-						<button class="download-button"><b>cv</b></button></a>
-			</div>
+  <!-- Animated background grid -->
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
 
-			<!-- This "nav-toggle" hamburger menu is only visible on mobile -->
-			<!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
-			<span class="nav-toggle">
-				<span></span>
-				<span></span>
-				<span></span>
-			</span>
-		</nav>
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="#about" style="display:flex;align-items:center;gap:0.6rem;text-decoration:none;">
+        <svg width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="nav-logo-svg">
+          <!-- Outer circle -->
+          <circle cx="50" cy="50" r="46" stroke="#00c8ff" stroke-width="1.8" fill="none" opacity="0.6"/>
+          <!-- Orbital ellipse -->
+          <ellipse cx="50" cy="50" rx="14" ry="36" stroke="#00c8ff" stroke-width="1" fill="none" opacity="0.35" transform="rotate(-15 50 50)"/>
+          <!-- A -->
+          <text x="24" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#e8f4ff">A</text>
+          <!-- P -->
+          <text x="52" y="63" font-family="'Syne', sans-serif" font-weight="800" font-size="34" fill="#00c8ff">P</text>
+          <!-- Orbiting electron -->
+          <circle r="3.5" fill="#00ffa3" opacity="0.95">
+            <animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#orbit-path"/>
+            </animateMotion>
+          </circle>
+          <!-- Hidden path for animateMotion -->
+          <defs>
+            <path id="orbit-path" d="
+              M 50 14
+              C 58 14, 64 30, 64 50
+              C 64 70, 58 86, 50 86
+              C 42 86, 36 70, 36 50
+              C 36 30, 42 14, 50 14
+            " transform="rotate(-15 50 50)"/>
+          </defs>
+        </svg>
+        <span class="nav-brand-text">Alejandro Pinto</span>
+      </a>
+    </div>
 
-		<!-- About Me -->
-		<section id="about" class="section section-1">
-			<!-- <div class="container"></br> -->
-				<!-- <p class="intro">
-								Welcome	</p>
-			</div> -->
-			<div class="container has-text-centered">
-				<!-- Source: https://flic.kr/p/pAZBNK -->
-				<img class="avatar" src="https://i.ibb.co/m0cLrhd/both-data.png">
-			</div>
-				<div class="cv">
-				<p>I'm Alejandro Pinto and this is my portfolio. Physicist with more than a year of research experience performing
-					computational calculations,  my expertise in data analysis and manipulation includes proficiency in Python libraries such as Pandas, Seaborn, and Scikit Learn, as well as SQL.
-					<p> As a physicist, I have extensive experience in analyzing complex data sets and developing models to describe and predict physical phenomena. This experience has given me a strong foundation in data analysis, statistics, and mathematics, which I have been able to apply to real-world problems in various fields.</p>
+    <div class="nav-links" id="nav-links">
+      <a href="#about" class="nav-link"><span class="link-num">01.</span> about</a>
+      <a href="#research" class="nav-link"><span class="link-num">02.</span> research</a>
+      <a href="#projects" class="nav-link"><span class="link-num">03.</span> projects</a>
+      <a href="cvAP-da.pdf" target="_blank" download class="nav-link nav-cv">
+        <span class="link-num">//</span> resume.pdf
+      </a>
+    </div>
 
-					<p>My proficiency in Python has enabled me to develop efficient and scalable data pipelines and perform data science using popular libraries such as NumPy, Pandas, seaborn, Plotly and Scikit-Learn. I have also developed several data-driven solutions using machine learning algorithms that have helped organizations optimize their operations and improve their bottom line.</p>
-<!-- <p> I have more than a year of experience in the area of teaching university
-students and secondary education in the teaching of physics, maths and
-programming.</p> -->
-				</div>
-		</section>
+    <div class="nav-socials">
+      <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+      <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </div>
 
-		<!-- Projects -->
-		<section  id="projects" class="section section-2">
-			<div class="container">
-				<div class="has-text-centered">
-					<h3 class="title is-3"><b>Projects</b></h3>
-					<hr>
-				</div>
-				<!-- Control buttons -->
-				<div id="sort-options">
-				  <button class="btn active" onclick="filterSelection('all')"> All</button>
-				  <button class="btn" onclick="filterSelection('python')"> Python</button>
-				  <button class="btn" onclick="filterSelection('sql')"> SQL</button>
-				  <button class="btn" onclick="filterSelection('powerbi')"> Power BI</button>
-  				  <button class="btn" onclick="filterSelection('rstudio')"> RStudio</button>
-			  <!-- <button class="btn" onclick="filterSelection('color')"> Colors</button> -->
-				</div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-				<div class="filter-sections">
-					<!-- Project EDA -->
-					<div class="box jello-horizontal filterItems python">
-						<article>
-							<a href="projects/eda.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/vJtTSFV/quatum.jpg" alt="Image" class="img-responsive" >
-									<figcaption class="img-responsive" >	Several project about 'Exploratory Data Analysis'.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- Project Rstudio -->
-					<div class="box jello-horizontal filterItems rstudio">
-						<article>
-							<a href="projects/Clustering.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/0X9j1Vx/Screenshot-from-2024-11-24-13-03-28.png" alt="Image" class="img-responsive" >
-									<figcaption > Clustering using RStudio </figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- Project eda taxi trip -->
-					<div class="box project-text jello-horizontal filterItems python">
-						<article>
-							<a href="projects/taxi-proj.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/41RzPH3/Screenshot-from-2023-05-07-09-58-36.png" alt="Image" class="img-responsive" >
-									<figcaption >	EDA for Taxi trip duration in NYC.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- Project Rstudio -->
-					<div class="box jello-horizontal filterItems rstudio">
-						<article>
-							<a href="projects/ModelosRegresion-Block.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/njWbyKR/Screenshot-from-2024-11-24-12-49-27.png" alt="Image" class="img-responsive" >
-									<figcaption > Regression Methods using RStudio </figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- Project 2 -->
-					<div class="box jello-horizontal filterItems python">
-						<article>
-							<a href="projects/eucaristicschool.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/ZT7ttQV/download.png" alt="Image" class="img-responsive" >
-									<figcaption >	Insights into Student Performance in High School Physics.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-										<!-- Powerbi test2-->
-					<div class="box jello-horizontal filterItems powerbi">
-						<article>
-							<a href="projects/powerbi-test2.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/fX2kdzs/Power-Bi-Access-Data-Base-Engine-error-886x590.webp" alt="Image" class="img-responsive" >
-									<figcaption >	PowerBI test 2.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- SQL Agrregation project -->
-					<div class="box jello-horizontal filterItems sql">
-						<article>
-							<a href="https://github.com/AlejandroPinto5/sql-for-data-science/blob/main/projects/aggreg-project.sql">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/GndKddb/Screenshot-from-2023-05-16-09-25-24.png" alt="" class="img-responsive">
-									<figcaption>"AggreMaster": Expertise of data metrics in SQL aggregation techniques.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- Project Rstudio -->
-					<div class="box jello-horizontal filterItems rstudio">
-						<article>
-							<a href="https://github.com/AlejandroPinto5/Rstudio">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/SR9hZzF/punto3.jpg" alt="Image" class="img-responsive" >
-									<figcaption > Statistic Analysis using RStudio </figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- Project Churn -->
-					<div class="box jello-horizontal filterItems python">
-						<article>
-							<a href="projects/churn-pred-proj.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/sq9ckQS/Screenshot-from-2023-04-25-10-39-29.png" alt="Image" class="img-responsive" >
-									<figcaption >	Churn Prediction Project Using Logistic Regression. </figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- SQL subqueries project -->
-					<div class="box jello-horizontal filterItems sql">
-						<article>
-							<a href="https://github.com/AlejandroPinto5/sql-for-data-science/blob/main/projects/subqueriers.sql">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/GndKddb/Screenshot-from-2023-05-16-09-25-24.png" alt="" class="img-responsive">
-									<figcaption>"Beyond the Basics: Unleashing Insights with Subqueries in SQL.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- Powerbi test-->
-					<div class="box jello-horizontal filterItems powerbi">
-						<article>
-							<a href="https://app.powerbi.com/view?r=eyJrIjoiOTQyM2U0MTEtYzliZC00NDQ0LWJkY2MtMWJkYTBjM2ExZDE5IiwidCI6IjJlZDU1NzRjLWY5YmEtNDQyNi05NjU4LWU0NzdhZDc0MzlkYiIsImMiOjR9">
-							<!--<a href="projects/powerbi-test.html">-->
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/fX2kdzs/Power-Bi-Access-Data-Base-Engine-error-886x590.webp" alt="Image" class="img-responsive" >
-									<figcaption >	PowerBI test.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- Project Rstudio -->
-					<div class="box jello-horizontal filterItems rstudio">
-						<article>
-							<a href="projects/ModelosRegresion-Ants.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/5L8cYpr/Screenshot-from-2024-11-24-12-51-06.png" alt="Image" class="img-responsive" >
-									<figcaption > Regression Methods using RStudio </figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- project linear regression -->
-					<!-- <div class="box jello-horizontal filterItems python">
-						<article>
-							<a href="https://github.com/AlejandroPinto5/linear-models/blob/main/linear_regressaion.ipynb">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/BcjcQ60/Screenshot-from-2023-04-18-10-16-02.png" alt="Image" class="img-responsive" >
-									<figcaption>Linear regression model.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div> -->
-					<!-- project predicting taxi trip Ç -->
-					<div class="box jello-horizontal filterItems python">
-						<article>
-							<a href="https://github.com/AlejandroPinto5/EDA-projects/blob/main/NYC-taxi-project/Pred_taxi_project.ipynb">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/h8NbfCP/Screenshot-from-2023-05-08-13-10-20.png" alt="Image" class="img-responsive" >
-									<figcaption>Comparison between linear Regression and Desicion tree to predict taxi trip duration.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- project ab testing and kpi -->
-					<div class=" box jello-horizontal filterItems python">
-						<article>
-							<a href="projects/case-study.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/MVjG1WF/images-1.jpg" alt="Image" class="img-responsive" >
-									<figcaption>Leveraging Machine Learning for Data-Driven Optimization in Online Grocery Business: A Online Grocery store Case Study".
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-					<!-- Powerbi test3-->
-					<div class="box jello-horizontal filterItems powerbi">
-						<article>
-							<a href="projects/powerbi-test3.html">
-								<figure class="image project-figure">
-									<img src="https://i.ibb.co/fX2kdzs/Power-Bi-Access-Data-Base-Engine-error-886x590.webp" alt="Image" class="img-responsive" >
-									<figcaption >	PowerBI test 3.
-									</figcaption>
-								</figure>
-							</a>
-						</article>
-					</div>
-			<!-- project decision tree implementation -->
-			<div class="box jello-horizontal filterItems python">
-				<article>
-					<a href="https://github.com/AlejandroPinto5/Decision-Tree/blob/main/Desicion_Tree_Implementation.ipynb">
-						<figure class="image project-figure">
-							<img src="https://i.ibb.co/2FWF6MV/Screenshot-from-2023-04-28-10-51-13.png" alt="Image" class="img-responsive" >
-							<figcaption>Decision tree model with maximum depth of 3. Gini impurity is implemented.
-							</figcaption>
-						</figure>
-					</a>
-				</article>
-			</div>
-			<!-- SQL Agrregation project -->
-			<div class="box jello-horizontal filterItems sql">
-				<article>
-					<a href="https://github.com/AlejandroPinto5/sql-for-data-science/blob/main/projects/company-paper.sql">
-						<figure class="image project-figure">
-							<img src="https://i.ibb.co/56QxMmS/Screenshot-from-2023-05-10-11-03-42.png" alt="" class="img-responsive">
-							<figcaption>Company Paper: Sales Reps and Associated Accounts by Region and Criteria in SQL.
-							</figcaption>
-						</figure>
-					</a>
-				</article>
-			</div>
-			<!-- project linear regression -->
-			<div class="box jello-horizontal filterItems python">
-				<article>
-					<a href="https://github.com/AlejandroPinto5/linear-models/blob/main/logistic_regression.ipynb">
-						<figure class="image project-figure">
-							<img src="https://i.ibb.co/9ckvnPY/Screenshot-from-2023-04-18-11-15-37.png" alt="Image" class="img-responsive" >
-							<figcaption>Logistic regression model implemented on titanic survival problem.
-							</figcaption>
-						</figure>
-					</a>
-				</article>
-			</div>
-			<!-- project knn -->
-			<div class="box jello-horizontal filterItems python">
-				<article>
-					<a href="https://github.com/AlejandroPinto5/KNN-algorithm">
-						<figure class="image project-figure">
-							<img src="https://i.ibb.co/VwG8PFb/Screenshot-from-2023-03-22-11-23-01.png" alt="Image" class="img-responsive" >
-							<figcaption >KNN-algorithm implemented on a simple model looking the best k with elbow method. Evaluation metric F1 is used.
-							</figcaption>
-						</figure>
-					</a>
-				</article>
-			</div>
-			<!-- project k-fold technique -->
-			<div class="box jello-horizontal filterItems python">
-				<article>
-					<a href="https://github.com/AlejandroPinto5/K-fold-Cross-Validation">
-						<figure class="image project-figure">
-							<img src="https://i.ibb.co/M2bHnqB/Screenshot-from-2023-04-04-18-59-25.png" alt="Image" class="img-responsive" >
-							<figcaption> K-fold Cross Validation technique using data cleaned and finding an optimal k value.
-							</figcaption>
-						</figure>
-					</a>
-				</article>
-			</div>
+  <!-- HERO / ABOUT -->
+  <section id="about" class="section hero-section">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="terminal-tag">// physicist_turned_data_scientist.py</div>
+        <h1 class="hero-title">
+          <span class="title-line fade-up" style="--d:0.1s">Alejandro</span>
+          <span class="title-line accent fade-up" style="--d:0.25s">Pinto</span>
+        </h1>
+        <div class="hero-role fade-up" style="--d:0.4s">
+          <span class="role-prefix">$</span>
+          <span class="role-text" id="role-text"></span>
+          <span class="cursor-blink">_</span>
+        </div>
+        <div class="hero-bio fade-up" style="--d:0.55s">
+          <p>Physicist, published researcher, and Data Scientist with end-to-end experience across the full data stack — from raw data wrangling to ML models, interactive Power BI dashboards, and scientific publications.</p>
+          <p>Co-author of a peer-reviewed paper applying Bayesian Graph Neural Networks to cosmological CMB data (Universe, MDPI 2026). I bring that same scientific rigor to business problems: SQL analytics, BI reporting, churn prediction, EDA, and cloud-based pipelines on GCP.</p>
+        </div>
 
-		</div>
-	</section>
+        <div class="hero-highlights fade-up" style="--d:0.62s">
+          <div class="highlight-item">
+            <span class="hi-icon">&#9632;</span>
+            <span class="hi-text">Power BI dashboards &amp; DAX</span>
+          </div>
+          <div class="highlight-item">
+            <span class="hi-icon">&#9632;</span>
+            <span class="hi-text">SQL — aggregations, subqueries, joins</span>
+          </div>
+          <div class="highlight-item">
+            <span class="hi-icon">&#9632;</span>
+            <span class="hi-text">ML pipelines — scikit-learn, TensorFlow</span>
+          </div>
+          <div class="highlight-item">
+            <span class="hi-icon">&#9632;</span>
+            <span class="hi-text">Cloud — Google Cloud Platform (GCP)</span>
+          </div>
+          <div class="highlight-item">
+            <span class="hi-icon">&#9632;</span>
+            <span class="hi-text">Published researcher — MDPI Universe 2026</span>
+          </div>
+          <div class="highlight-item">
+            <span class="hi-icon">&#9632;</span>
+            <span class="hi-text">R / RStudio — statistical modeling</span>
+          </div>
+        </div>
 
-		<!-- Footer -->
-		<section class="footer">
-			<img src="https://i.ibb.co/jR7YH3p/sign.png" alt="Image">
-		</section>
-		<!-- SCRIPTS -->
-		<script src="assets/js/controller.js"></script>
-		<script src="assets/js/filter.js"></script>
+        <div class="tech-stack fade-up" style="--d:0.7s">
+          <span class="stack-label">// tech_stack:</span>
+          <div class="stack-tags">
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Seaborn</span>
+            <span class="tag">Plotly</span>
+            <span class="tag">R / RStudio</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">GCP</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+      </div>
 
-	</body>
+      <div class="hero-right fade-up" style="--d:0.3s">
+        <div class="avatar-wrapper">
+          <div class="avatar-ring ring-1"></div>
+          <div class="avatar-ring ring-2"></div>
+          <div class="avatar-ring ring-3"></div>
+          <svg class="avatar-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer glow ring -->
+            <circle cx="100" cy="100" r="94" stroke="#00c8ff" stroke-width="1" fill="none" opacity="0.15"/>
+            <!-- Main circle -->
+            <circle cx="100" cy="100" r="86" stroke="#00c8ff" stroke-width="1.8" fill="#0d1424" opacity="0.9"/>
+            <!-- Inner subtle ring -->
+            <circle cx="100" cy="100" r="72" stroke="#00c8ff" stroke-width="0.6" fill="none" opacity="0.12"/>
+            <!-- Orbital ellipse -->
+            <ellipse cx="100" cy="100" rx="26" ry="68" stroke="#00c8ff" stroke-width="1.2" fill="none" opacity="0.35" transform="rotate(-15 100 100)"/>
+            <!-- Second orbital ellipse (perpendicular) -->
+            <ellipse cx="100" cy="100" rx="26" ry="68" stroke="#7b61ff" stroke-width="0.8" fill="none" opacity="0.2" transform="rotate(60 100 100)"/>
+            <!-- A -->
+            <text x="44" y="122" font-family="'Syne', sans-serif" font-weight="800" font-size="68" fill="#e8f4ff">A</text>
+            <!-- P -->
+            <text x="102" y="122" font-family="'Syne', sans-serif" font-weight="800" font-size="68" fill="#00c8ff">P</text>
+            <!-- Main orbiting electron (green, fast) -->
+            <circle r="5.5" fill="#00ffa3" opacity="0.95" filter="url(#glow-green)">
+              <animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#orbit-main"/>
+              </animateMotion>
+            </circle>
+            <!-- Second electron (purple, slower, different orbit) -->
+            <circle r="3.5" fill="#7b61ff" opacity="0.85" filter="url(#glow-purple)">
+              <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto" begin="-1.5s">
+                <mpath href="#orbit-second"/>
+              </animateMotion>
+            </circle>
+            <defs>
+              <path id="orbit-main" d="
+                M 100 32
+                C 116 32,128 62,128 100
+                C 128 138,116 168,100 168
+                C 84 168,72 138,72 100
+                C 72 62,84 32,100 32
+              " transform="rotate(-15 100 100)"/>
+              <path id="orbit-second" d="
+                M 100 32
+                C 116 32,128 62,128 100
+                C 128 138,116 168,100 168
+                C 84 168,72 138,72 100
+                C 72 62,84 32,100 32
+              " transform="rotate(60 100 100)"/>
+              <filter id="glow-green" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="glow-purple" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+          </svg>
+          <div class="avatar-overlay"></div>
+        </div>
+        <div class="stats-panel">
+          <div class="stat">
+            <span class="stat-num">1+</span>
+            <span class="stat-label">yrs research</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">15+</span>
+            <span class="stat-label">projects</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">5</span>
+            <span class="stat-label">tech stacks</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="scroll-line"></span>
+      <span class="scroll-text">scroll</span>
+    </div>
+  </section>
+
+  <!-- RESEARCH / PUBLICATIONS -->
+  <section id="research" class="section research-section">
+    <div class="section-header">
+      <div class="section-label">
+        <span class="label-num">02</span>
+        <span class="label-line"></span>
+        <span class="label-text">research</span>
+      </div>
+      <h2 class="section-title">Published Research</h2>
+    </div>
+
+    <div class="pub-card">
+
+      <!-- TOP BANNER -->
+      <div class="pub-banner-wrap">
+        <img src="assets/img/regression_model.jpg" alt="Predicted vs ground truth for cosmological parameters" class="pub-banner-img">
+        <div class="pub-banner-gradient"></div>
+        <div class="pub-banner-caption">
+          <i class="fa fa-bar-chart"></i>
+          Fig. 1 — Network architecture combining Spherical GNN (DeepSphere) with Bayesian Neural Networks for cosmological parameter inference
+        </div>
+      </div>
+
+      <!-- BOTTOM: metrics + content side by side -->
+      <div class="pub-bottom-row">
+
+        <!-- Metrics sidebar -->
+        <div class="pub-metrics-side">
+          <div class="pub-metric-item">
+            <span class="pm-val">89%+</span>
+            <span class="pm-label">R² score</span>
+          </div>
+          <div class="pm-divider-h"></div>
+          <div class="pub-metric-item">
+            <span class="pm-val">5</span>
+            <span class="pm-label">params</span>
+          </div>
+          <div class="pm-divider-h"></div>
+          <div class="pub-metric-item">
+            <span class="pm-val">10K</span>
+            <span class="pm-label">CMB maps</span>
+          </div>
+          <div class="pm-divider-h"></div>
+          <div class="pub-metric-item">
+            <span class="pm-val">2026</span>
+            <span class="pm-label">published</span>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="pub-content-col">
+          <div class="pub-tags-row">
+            <span class="pub-badge journal">Universe — MDPI</span>
+            <span class="pub-badge type">Open Access</span>
+            <span class="pub-badge year">Jan 2026</span>
+          </div>
+
+          <h3 class="pub-title">Bayesian Inference of Primordial Magnetic Field Parameters from CMB with Spherical Graph Neural Networks</h3>
+
+          <p class="pub-authors">
+            <span class="author-me">J. A. Pinto Castro</span>,
+            H. J. Hortúa,
+            J. E. García-Farieta,
+            R. A. Hurtado
+          </p>
+
+          <p class="pub-abstract">
+            A novel Bayesian graph deep learning framework for estimating key cosmological parameters in a primordial magnetic field (PMF) cosmology from simulated Cosmic Microwave Background (CMB) maps. The methodology uses DeepSphere — a spherical convolutional neural network respecting CMB's spherical geometry via HEALPix pixelization — combined with Bayesian Neural Networks (BNNs) for robust uncertainty quantification. The framework achieves R² scores exceeding 89% for magnetic parameter estimation.
+          </p>
+
+          <div class="pub-keywords">
+            <span class="kw-label">// keywords:</span>
+            <span class="kw-tag">Deep Learning</span>
+            <span class="kw-tag">Cosmology</span>
+            <span class="kw-tag">CMB</span>
+            <span class="kw-tag">Bayesian Neural Networks</span>
+            <span class="kw-tag">Graph Neural Networks</span>
+            <span class="kw-tag">HEALPix</span>
+          </div>
+
+          <div class="pub-actions">
+            <a href="https://www.mdpi.com/2218-1997/12/2/34" target="_blank" class="pub-btn pub-btn-primary">
+              <i class="fa fa-external-link"></i> Read Paper
+            </a>
+            <a href="https://doi.org/10.3390/universe12020034" target="_blank" class="pub-btn pub-btn-secondary">
+              <i class="fa fa-link"></i> DOI: 10.3390/universe12020034
+            </a>
+          </div>
+
+          <div class="pub-affiliation">
+            <i class="fa fa-institution"></i>
+            Laboratorio de Inteligencia Artificial (SavIA Lab), Universidad El Bosque, Bogotá, Colombia
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section projects-section">
+    <div class="section-header">
+      <div class="section-label">
+        <span class="label-num">03</span>
+        <span class="label-line"></span>
+        <span class="label-text">projects</span>
+      </div>
+      <h2 class="section-title">Selected Work</h2>
+    </div>
+
+    <!-- Filter buttons -->
+    <div id="sort-options">
+      <button class="filter-btn active" onclick="filterSelection('all')" data-filter="all">
+        <span class="btn-dot"></span>all
+      </button>
+      <button class="filter-btn" onclick="filterSelection('python')" data-filter="python">
+        <span class="btn-dot python-dot"></span>python
+      </button>
+      <button class="filter-btn" onclick="filterSelection('sql')" data-filter="sql">
+        <span class="btn-dot sql-dot"></span>sql
+      </button>
+      <button class="filter-btn" onclick="filterSelection('powerbi')" data-filter="powerbi">
+        <span class="btn-dot powerbi-dot"></span>power bi
+      </button>
+      <button class="filter-btn" onclick="filterSelection('rstudio')" data-filter="rstudio">
+        <span class="btn-dot rstudio-dot"></span>rstudio
+      </button>
+    </div>
+
+    <div class="filter-sections" id="project-grid">
+
+      <!-- EDA -->
+      <div class="project-card filterItems python">
+        <a href="projects/eda.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/vJtTSFV/quatum.jpg" alt="EDA Projects" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">01</span>
+            </div>
+            <h3 class="card-title">Exploratory Data Analysis</h3>
+            <p class="card-desc">Several projects exploring EDA techniques across diverse datasets.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Clustering RStudio -->
+      <div class="project-card filterItems rstudio">
+        <a href="projects/Clustering.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/0X9j1Vx/Screenshot-from-2024-11-24-13-03-28.png" alt="Clustering" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag rstudio-tag">RStudio</span>
+              <span class="card-num">02</span>
+            </div>
+            <h3 class="card-title">Clustering Analysis</h3>
+            <p class="card-desc">Unsupervised learning and cluster analysis using RStudio.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Taxi EDA -->
+      <div class="project-card filterItems python">
+        <a href="projects/taxi-proj.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/41RzPH3/Screenshot-from-2023-05-07-09-58-36.png" alt="Taxi EDA" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">03</span>
+            </div>
+            <h3 class="card-title">NYC Taxi Trip EDA</h3>
+            <p class="card-desc">Exploratory analysis of taxi trip duration data in New York City.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Regression RStudio -->
+      <div class="project-card filterItems rstudio">
+        <a href="projects/ModelosRegresion-Block.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/njWbyKR/Screenshot-from-2024-11-24-12-49-27.png" alt="Regression" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag rstudio-tag">RStudio</span>
+              <span class="card-num">04</span>
+            </div>
+            <h3 class="card-title">Regression Methods</h3>
+            <p class="card-desc">Block regression models and comparative analysis in RStudio.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Student Performance -->
+      <div class="project-card filterItems python">
+        <a href="projects/eucaristicschool.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/ZT7ttQV/download.png" alt="Student Performance" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">05</span>
+            </div>
+            <h3 class="card-title">Student Performance Insights</h3>
+            <p class="card-desc">Analysis of high school physics student performance metrics.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Power BI 2 -->
+      <div class="project-card filterItems powerbi">
+        <a href="projects/powerbi-test2.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/fX2kdzs/Power-Bi-Access-Data-Base-Engine-error-886x590.webp" alt="PowerBI" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag powerbi-tag">Power BI</span>
+              <span class="card-num">06</span>
+            </div>
+            <h3 class="card-title">Power BI Dashboard II</h3>
+            <p class="card-desc">Interactive business intelligence dashboard and visualization.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- SQL Aggregation -->
+      <div class="project-card filterItems sql">
+        <a href="https://github.com/AlejandroPinto5/sql-for-data-science/blob/main/projects/aggreg-project.sql" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/GndKddb/Screenshot-from-2023-05-16-09-25-24.png" alt="SQL Aggregation" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag sql-tag">SQL</span>
+              <span class="card-num">07</span>
+            </div>
+            <h3 class="card-title">AggreMaster</h3>
+            <p class="card-desc">Expertise of data metrics using SQL aggregation techniques.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- RStudio Stats -->
+      <div class="project-card filterItems rstudio">
+        <a href="https://github.com/AlejandroPinto5/Rstudio" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/SR9hZzF/punto3.jpg" alt="Statistics" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag rstudio-tag">RStudio</span>
+              <span class="card-num">08</span>
+            </div>
+            <h3 class="card-title">Statistical Analysis</h3>
+            <p class="card-desc">Comprehensive statistical analysis and modeling using RStudio.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Churn Prediction -->
+      <div class="project-card filterItems python">
+        <a href="projects/churn-pred-proj.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/sq9ckQS/Screenshot-from-2023-04-25-10-39-29.png" alt="Churn" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">09</span>
+            </div>
+            <h3 class="card-title">Churn Prediction</h3>
+            <p class="card-desc">Customer churn prediction using logistic regression classification.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- SQL Subqueries -->
+      <div class="project-card filterItems sql">
+        <a href="https://github.com/AlejandroPinto5/sql-for-data-science/blob/main/projects/subqueriers.sql" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/GndKddb/Screenshot-from-2023-05-16-09-25-24.png" alt="SQL Subqueries" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag sql-tag">SQL</span>
+              <span class="card-num">10</span>
+            </div>
+            <h3 class="card-title">Beyond the Basics: Subqueries</h3>
+            <p class="card-desc">Unleashing complex insights with advanced SQL subquery techniques.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Power BI 1 -->
+      <div class="project-card filterItems powerbi">
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiOTQyM2U0MTEtYzliZC00NDQ0LWJkY2MtMWJkYTBjM2ExZDE5IiwidCI6IjJlZDU1NzRjLWY5YmEtNDQyNi05NjU4LWU0NzdhZDc0MzlkYiIsImMiOjR9" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/fX2kdzs/Power-Bi-Access-Data-Base-Engine-error-886x590.webp" alt="PowerBI" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag powerbi-tag">Power BI</span>
+              <span class="card-num">11</span>
+            </div>
+            <h3 class="card-title">Power BI Dashboard I</h3>
+            <p class="card-desc">Live interactive Power BI report with business metrics visualization.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Regression Ants -->
+      <div class="project-card filterItems rstudio">
+        <a href="projects/ModelosRegresion-Ants.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/5L8cYpr/Screenshot-from-2024-11-24-12-51-06.png" alt="Regression Ants" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag rstudio-tag">RStudio</span>
+              <span class="card-num">12</span>
+            </div>
+            <h3 class="card-title">Regression — Ants Dataset</h3>
+            <p class="card-desc">Applied regression methods on biological datasets in RStudio.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Taxi Prediction -->
+      <div class="project-card filterItems python">
+        <a href="https://github.com/AlejandroPinto5/EDA-projects/blob/main/NYC-taxi-project/Pred_taxi_project.ipynb" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/h8NbfCP/Screenshot-from-2023-05-08-13-10-20.png" alt="Taxi Prediction" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">13</span>
+            </div>
+            <h3 class="card-title">Taxi Duration Prediction</h3>
+            <p class="card-desc">Comparing Linear Regression vs Decision Tree for trip duration prediction.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Case Study ML -->
+      <div class="project-card filterItems python">
+        <a href="projects/case-study.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/MVjG1WF/images-1.jpg" alt="Case Study" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">14</span>
+            </div>
+            <h3 class="card-title">Online Grocery ML Case Study</h3>
+            <p class="card-desc">ML-driven optimization for an online grocery store — KPIs and A/B testing.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Power BI 3 -->
+      <div class="project-card filterItems powerbi">
+        <a href="projects/powerbi-test3.html">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/fX2kdzs/Power-Bi-Access-Data-Base-Engine-error-886x590.webp" alt="PowerBI 3" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag powerbi-tag">Power BI</span>
+              <span class="card-num">15</span>
+            </div>
+            <h3 class="card-title">Power BI Dashboard III</h3>
+            <p class="card-desc">Advanced data visualization and reporting with Power BI.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Decision Tree -->
+      <div class="project-card filterItems python">
+        <a href="https://github.com/AlejandroPinto5/Decision-Tree/blob/main/Desicion_Tree_Implementation.ipynb" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/2FWF6MV/Screenshot-from-2023-04-28-10-51-13.png" alt="Decision Tree" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">16</span>
+            </div>
+            <h3 class="card-title">Decision Tree Implementation</h3>
+            <p class="card-desc">Decision tree with depth-3 and Gini impurity implemented from scratch.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- SQL Company Paper -->
+      <div class="project-card filterItems sql">
+        <a href="https://github.com/AlejandroPinto5/sql-for-data-science/blob/main/projects/company-paper.sql" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/56QxMmS/Screenshot-from-2023-05-10-11-03-42.png" alt="Company Paper" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag sql-tag">SQL</span>
+              <span class="card-num">17</span>
+            </div>
+            <h3 class="card-title">Company Paper</h3>
+            <p class="card-desc">Sales reps and accounts analysis by region and criteria in SQL.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Logistic Regression -->
+      <div class="project-card filterItems python">
+        <a href="https://github.com/AlejandroPinto5/linear-models/blob/main/logistic_regression.ipynb" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/9ckvnPY/Screenshot-from-2023-04-18-11-15-37.png" alt="Logistic Regression" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">18</span>
+            </div>
+            <h3 class="card-title">Titanic Survival — Logistic Regression</h3>
+            <p class="card-desc">Logistic regression applied to the classic Titanic survival problem.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- KNN -->
+      <div class="project-card filterItems python">
+        <a href="https://github.com/AlejandroPinto5/KNN-algorithm" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/VwG8PFb/Screenshot-from-2023-03-22-11-23-01.png" alt="KNN" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">19</span>
+            </div>
+            <h3 class="card-title">KNN Algorithm</h3>
+            <p class="card-desc">K-Nearest Neighbors with elbow method and F1 evaluation metric.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- K-Fold -->
+      <div class="project-card filterItems python">
+        <a href="https://github.com/AlejandroPinto5/K-fold-Cross-Validation" target="_blank">
+          <div class="card-img-wrap">
+            <img src="https://i.ibb.co/M2bHnqB/Screenshot-from-2023-04-04-18-59-25.png" alt="K-Fold" class="card-img">
+            <div class="card-overlay">
+              <span class="card-view">view project <i class="fa fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag python-tag">Python</span>
+              <span class="card-num">20</span>
+            </div>
+            <h3 class="card-title">K-Fold Cross Validation</h3>
+            <p class="card-desc">Cross validation technique with optimal k-value selection on cleaned data.</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-brand">[AP]</span>
+        <span class="footer-copy">© 2025 Alejandro Pinto</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/in/alejandro-pinto-07a90417a/" class="social-icon" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="https://github.com/AlejandroPinto5" class="social-icon" target="_blank"><i class="fa fa-github"></i></a>
+        <a href="https://twitter.com/Alejo_Pintirris" class="social-icon" target="_blank"><i class="fa fa-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/controller.js"></script>
+  <script src="assets/js/filter.js"></script>
+  <script>
+    // Typewriter effect
+    const roles = [
+      'Data Scientist',
+      'Physicist',
+      'ML Engineer',
+      'Data Analyst',
+    ];
+    let ri = 0, ci = 0, deleting = false;
+    const el = document.getElementById('role-text');
+    function type() {
+      const word = roles[ri];
+      if (!deleting) {
+        el.textContent = word.slice(0, ++ci);
+        if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+      } else {
+        el.textContent = word.slice(0, --ci);
+        if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+      }
+      setTimeout(type, deleting ? 60 : 100);
+    }
+    type();
+
+    // Hamburger
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+
+    // Intersection observer for fade-up
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.project-card').forEach(el => obs.observe(el));
+  </script>
+</body>
 </html>
